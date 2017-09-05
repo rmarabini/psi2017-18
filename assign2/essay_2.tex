@@ -1,0 +1,632 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple Sectioned Essay Template
+% LaTeX Template
+% i
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing essay content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%       PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{url}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry} % Required to change the page size to A4
+%\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{framed}
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{{Práctica-2}} 
+\fancyhead[LO]{Proyecto de Sistemas Informáticos}
+%\fancyhead[RO]{{\leftmark}} 
+\fancyfoot[LE,RO]{{ \thepage }}
+
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\lstset{ %
+  language=Python,                % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  %backgroundcolor=\color{grey},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  %showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  %rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=4,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  %breaklines=true,                % sets automatic line breaking
+  %breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  %keywordstyle=\color{blue},          % keyword style
+  %commentstyle=\color{dkgreen},       % comment style
+  %stringstyle=\color{mauve},         % string literal style
+  %escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  %morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\newcounter{ejercicioNo}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%       TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Universidad Aut\'{o}noma de Madrid}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Proyecto de Sistemas Informaticos}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Departamento de Informatica}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Departamento de Inform\'{a}tica}\\[0.5cm] % Minor heading such as course title
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Proyecto de Sistemas Inform\'{a}ticos\\[0.5cm] Pr\'{a}ctica - 2}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft}
+% \large
+%\emph{Author:}\\
+%Roberto  \textsc{Marabini Ruiz} % Your name
+%\end{flushleft}
+%\end{minipage}
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[4cm]
+
+%{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+\vfill % Fill the rest of the page with whitespace
+%\begin{minipage}{0.4\textwidth}
+\begin{flushright}
+ \large
+%\emph{Author:}\\
+Roberto  \textsc{Marabini Ruiz} % Your name
+\end{flushright}
+%\end{minipage}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%       TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Include a table of contents
+
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+
+%----------------------------------------------------------------------------------------
+%       OBJETIVOS
+%----------------------------------------------------------------------------------------
+
+\section {Introducción}
+El principal objetivo de esta práctica es familiarizarse con el entorno de desarrollo Django y Heroku. En esta práctica utilizáremos el tutorial ``on line'' \textit{Tango with Django} accesible en el URL~\url{http://www.tangowithdjango.com/} (usaremos la última versión del libro). 
+
+Para llevar control de las distintas versiones del código usaremos \texttt{git}. Probablemente la forma más sencilla de empezar a usar git sea crear un repositorio en bitbucket y luego clonarlo (\texttt{git clone ...}). Finalmente haría falta crear un proyecto en \textit{pycharm} sobre el repositorio clonado. Para ello, en el menú principal selecciona File $\rightarrow$ Open, En la ventana de diálogo selecciona el directorio que contenga el repositorio.
+Si necesitáis ayuda para realizar este paso pedidla, os la daremos encantados. En el libro de referencia
+tenéis un capítulo titulado \textit{A Git Crash Course} el cual describe el uso de git. 
+
+\section{Trabajo a Realizar Durante la Primera Semana de la práctica}
+
+Leed los capítulos \textit{Django Basics} y \textit{Templates and Static Media} del tutorial  \textit{Tango with Django} ejecutando los ejemplos descritos. Al finalizar cada capítulo  realizad los
+ejercicios propuestos. Subid el código creado a un NUEVO repositorio en Bitbucket. No reuseis el repositorio creado en la práctica anterior.
+
+
+Nota: en uno de los ejercicios se os solicita que busquéis una imagen para mostrarla en una página web.  Por algún motivo existe una tendencia a buscar imagenes de alta defición que ocupan varios megabytes. Estas imágenes, por lo general, no son las más adecuadas para ser usadas en una pagina web.
+
+\section{Trabajo a Entregar Durante la Primera Semana de la práctica}
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+Ejercicio \arabic{ejercicioNo}: Introducción a Django-I
+%\label{Ejercicio_1}
+\begin{enumerate}
+
+\item Subid vuestro proyecto a \texttt{bitbucket} usando \texttt{git}. Usad el fichero \texttt{.gitignore} para evitar subir los ficheros con extensión \texttt{pyc} 
+
+\item Usando moodle entregad un proyecto de Django que contenga los ejercicios solicitados en los capitulo \textit{Django Basics} y \textit{Templates and Static Media}.
+
+\item En concreto se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign2\_first\_week.zip  master} desde el directorio del projecto (\texttt{tango\_with\_django\_project}). (Recordad que git hará un backup únicamente de los ficheros 
+que hayan sido ``añadidos'' -git add- y registrados -git commit-).
+
+\item En estos ejercicios se hace referencia a una aplicación desarrollada en la ``official Django tutorial''. No hace falta que entreguéis la susodicha aplicación.
+
+ \end{enumerate}
+\end{framed}
+\end{minipage}\\\\
+
+%------------------------------------------------
+
+
+%------------------------------------------------
+
+\section{Trabajo a Realizar Durante la Segunda Semana de la práctica}
+
+Leed los capítulos \textit{Models and Databases} y  \textit{Models, Templates and Views}  del tutorial  \textit{Tango with Django} ejecutando los ejemplos descritos.
+Al finalizar cada capitulo  realizad los
+ejercicios propuestos. En estos ejercicios se hace
+referencia a una aplicación desarrollada en la \textit{official Django tutorial}. No hace
+falta que entreguéis la susodicha aplicación.
+
+IMPORTANTE-1: durante la realización de los ejercicios tendréis que crear un superusuario para acceder a la base de datos usando el comando \texttt{python manage.py createsuperuser} utilizad \texttt{alumnodb} tanto para el nombre como para la clave. Use \texttt{psi} como nombre de la base de datos asociada al proyecto.
+
+IMPORTANTE-2: como base de datos usad \texttt{postgres} en lugar de \texttt{sqlite3} que es
+la opción por defecto. En la subsección \textit{Telling Django about your database} se describe 
+la variable \texttt{DATABASES} la cual se deberá configurar en el fichero \texttt{settings.py} de forma similar a la mostrada en el listado siguiente.\\
+
+\begin{lstlisting} [language=python,lineskip={-1.0pt},breaklines=true] 
+
+#define an enviroment variable called DATABASE_URL and use it to initializate DATABASES
+#dictionary
+#export DATABASE_URL='postgres://alumnodb:alumnodb@localhost:5432/psi'
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+   
+\end{lstlisting}
+\subsection{Persistencia de las Bases de Datos}
+A diferencia de lo que ocurre con los datos existentes en vuestra cuenta, las bases de datos creadas usando postgres no se borran al apagar el equipo. Por ello es posible que os encontrais en el ordenador con una base de datos llamada \textit{psi} con una estructura diferente a la que necesitáis. Por ello, y para evitar conflictos, os recomendamos que al principio de cada sesión borréis la base de datos \textit{psi}. Para borrar la base podéis usar el comando \texttt{dropdb -U alumnodb -h localhost psi}, a continuación recrear la base con \texttt{createdb -U alumnodb -h localhost psi}.
+
+\subsection{Tests}
+En la página moodle de la asignatura se encuentra el fichero \texttt{tests.py}. Aseguraros de que TODOS los tests definidos en las clases \textit{GeneralTests}, \textit{IndexPageTests},\textit{AboutPageTests} y \textit{ModelTests} son satisfechos por vuestros código. No modifiquéis el fichero con los tests, si alguno test no se satisface modificar vuestro proyecto. 
+
+Para ejecutar los tests copiad este fichero en el directorio rango y teclead:
+\begin{verbatim}
+python ./manage.py test rango.tests.GeneralTests  --keepdb -v 3
+python ./manage.py test rango.tests.IndexPageTests  --keepdb -v 3
+python ./manage.py test rango.tests.AboutPageTests  --keepdb -v 3
+python ./manage.py test rango.tests.ModelTests  --keepdb -v 3
+python ./manage.py test rango.tests.Chapter4ViewTests  --keepdb -v 3
+python ./manage.py test rango.tests.Chapter5ViewTests  --keepdb -v 3
+\end{verbatim}
+
+
+
+\section{Trabajo a Entregar Durante la Segunda Semana de la práctica}
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+Ejercicio \arabic{ejercicioNo}: Introducción a Django-II
+%\label{Ejercicio_1}
+\begin{enumerate}
+\item Subid vuestro proyecto a \texttt{bitbucket} usando \texttt{git}. 
+
+\item Usando moodle entregad un proyecto de Django que contenga los ejercicios solicitados en los capitulos \textit{Models and Databases} y  \textit{Models, Templates and Views}. En concreto se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign2\_second\_week.zip  master} desde el directorio del projecto (\texttt{tango\_with\_django\_project})
+
+\item Aseguraros de que todos los tests definidos en el fichero \textit{tests.py} son satisfechos por vuestros código.
+\end{enumerate}
+\end{framed}
+\end{minipage}
+
+\section{Trabajo a Realizar Durante la Tercera Semana de la práctica}
+
+Leed el capítulo \textit{Fun with Forms}  ejecutando los ejemplos descritos.
+Al finalizar el capítulo  realizad los ejercicios propuestos. Igualmente leed el capítulo
+\textit{Working with Templates(1.7)}(lo encontrareis en la version 1.7 del libro). Este capítulo  
+asume una aplicación \textit{rango} más compleja de la que teneis desarollada en la cual se ha creado un formulario para hacer ``log-in/out''. En el apéndice \ref{app:workingWithTemplates}
+hemos reescrito parte del código para adecuarlo a vuestra aplicación. En este capítulo sólo se solicita que implementéis los ejercicios:
+
+\begin{itemize}
+ \item Update all other existing templates within Rango’s...
+ \item Change all the references to rango urls to use the url template tag.
+\end{itemize}
+
+
+\section{Trabajo a Entregar Durante la Tercera Semana de la práctica}
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+Ejercicio \arabic{ejercicioNo}: Introducción a Django-II
+%\label{Ejercicio_1}
+\begin{enumerate}
+\item Subid vuestro proyecto a \texttt{bitbucket} usando \texttt{git}. 
+
+\item Usando moodle entregad un proyecto de Django que contenga los ejercicios solicitados para los capitulos \textit{Fun with Forms} y  \textit{Working with Templates(1.7)}. En concreto se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign2\_third\_week.zip  master} desde el directorio del projecto (\texttt{tango\_with\_django\_project})
+
+\item  Aseguraros de que todos los tests desarrollados son satisfechos por vuestro código
+\item No hace falta que realiceis el ejercicio titulado ``Undertake part XXXX of the official Django tutorial...''. 
+
+\end{enumerate}
+\end{framed}
+\end{minipage}
+-------------------------
+
+\section{Cuarta semana: Usando Heroku}
+En esta semana vamos a ver aprender a desplegar aplicaciones Web realizada en Django en Heroku. Heroku es una ``plataforma como servicio'' de computación en nube (PaaS) que nos permite desplegar nuestra aplicación en la nube de manera gratuita.
+
+Nota: la documentación de Heroku está basada en el post: \url{https://amatellanes.wordpress.com/2014/02/25/django-heroku-desplegando-una-aplicacion-django-en-heroku/}
+
+\subsection{Creando una cuenta en Heroku}
+El primer paso a realizar es crear una cuenta de usuario en Heroku que puedes conseguir de manera gratuita en \url{https://signup.heroku.com/identity}.
+
+\subsection{Definiendo Nuestro Procfile y runtime.txt}
+
+Vamos a hacer uso de un fichero llamado \texttt{Procfile}. Este fichero debe localizarse en el directorio raíz del proyecto (\texttt{tango\_with\_django\_project})  y es donde declaramos los comandos que deberían ser ejecutados al arrancar nuestra aplicación. 
+
+Para que nuestra aplicación se ejecute lo primero que deberemos hacer es arrancar Gunicorn (servidor de Django). Para ello creamos el fichero \texttt{Procfile} y añadimos lo siguiente:
+
+\begin{verbatim}
+web: gunicorn tango_with_django_project.wsgi --log-file -
+\end{verbatim}
+
+Igualmente debemos decirle a Heroku que versión de python deseamos utilizar. Para ello se creará el fichero \texttt{runtime.txt} y se escribirá una única linea con la versión de python deseada. Por ejemplo \texttt{python-2.7.13}.
+
+\subsection{Definiendo las Dependencias con Pip}
+
+Heroku reconoce una aplicación Python por la existencia de un fichero \texttt{requirements.txt} en el directorio raíz del repositorio. En este fichero se especifican los módulos Python adicionales que nuestra aplicación necesita. El fichero se puede crear de forma automática tecleando el comando
+\begin{verbatim}
+pip freeze > requirements.txt
+\end{verbatim}
+
+el contenido del fichero resultante se debe parecer a
+
+\begin{verbatim}
+$ cat requirements.txt 
+Django==1.9
+dj-static==0.0.6
+dj-database_url==0.3.0
+psycopg2==2.6.1
+Pillow==2.8.2
+static3==0.7.0
+gunicorn==19.6.0
+\end{verbatim}
+
+pudiendo varias el numero de version. Si existen más lineas con diferentes paquetes os recomendamos que las borréis. No os olvidéis de añadir la linea \texttt{gunicorn==19.6.0}.
+
+\subsection{Configurando la Aplicación para que se Pueda Desplegar en Heroku}
+El siguiente paso es configurar nuestra aplicación Django empezando por la configuración de la base de datos Postgres que usaremos en Heroku. En python tenemos instalado un módulo llamado \texttt{dj-database-url}, este módulo convierte la variable de entorno \texttt{DATABASE\_URL} en código que entiende nuestra aplicación Django. Tendremos que añadir las siguientes lineas de código  al final de nuestro fichero \texttt{settings.py}: 
+
+\begin{verbatim}
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES = {'default':dj_database_url.config()}
+STATIC_ROOT = 'staticfiles'
+\end{verbatim}
+
+
+
+
+
+ A continuación modificamos el fichero \texttt{tango\_with\_django\_project/wsgi.py} añadiendo el siguiente código:
+\begin{verbatim}
+ 
+from django.core.wsgi import get_wsgi_application
+from dj_static import Cling
+ 
+application = Cling(get_wsgi_application())
+\end{verbatim}
+
+Con estos  pasos queda configurada nuestra aplicación para ser desplegada en Heroku. 
+
+\subsection{Creando un repositorio Git para la aplicación}
+Nuestra aplicación ya debería estar guardada en un repositorio git. De todas formas repetimos a continuación los pasos a ejecutar. IMPORTANTE: el directorio \texttt{.git} debe estar en el mismo directorio que la carpeta con la aplicación.
+
+El primer paso para crear nuestro repositorio es definir un fichero oculto .gitignore donde definiremos aquellos ficheros y directorios que queremos que sean ignorados por nuestro repositorio. Nos aseguramos que nuestro fichero .gitignore contenga, al menos, las siguientes restricciones:
+
+\begin{verbatim}
+  *.pyc
+  staticfiles
+  uploads
+\end{verbatim}
+
+A continuación, si no estamos usando un repository en Bitbutcket  creamos nuestro repositorio y guardamos nuestro cambios, en caso contrario se puede ignorar este paso:
+
+\begin{verbatim}
+$ git init 
+Initialized empty Git repository in /home/xxx/yyy/.git/ 
+ 
+$ git add . 
+ 
+$ git commit -m 'initial commit'
+[master (root-commit) da56753] initial commit 
+ 6 files changed, 128 insertions(+) 
+ create mode 100644 Procfile 
+ create mode 100644 hellodjango/__init__.py 
+ create mode 100644 hellodjango/requirements.txt 
+ create mode 100644 hellodjango/settings.py 
+ create mode 100644 hellodjango/urls.py 
+ create mode 100644 hellodjango/wsgi.py 
+ create mode 100644 manage.py 
+\end{verbatim}
+
+\subsection{Desplegando la aplicación en Heroku}
+
+ El siguiente paso es subir la aplicación que acabamos de crear a un repositorio de Heroku. Para ello usamos el siguiente comando:
+
+ \begin{verbatim}
+$ heroku login
+Enter your Heroku credentials.
+Email: python@example.com
+Password:
+...
+$ heroku create 
+Creating gentle-gorge-9766... done, stack is cedar 
+http://gentle-gorge-9766.herokuapp.com/ | git@heroku.com:gentle-gorge-9766.git 
+Git remote heroku added
+ \end{verbatim}
+
+Este comando ha creado un repositorio remoto en Heroku. Como último paso antes de subir el código a Heroku debemos editar una vez más el fichero \texttt{settings.py} y modificar la variable \texttt{ALLOWED\_HOSTS} añadiendo el nombre del
+host en el que se va a ejecutar la aplicación (el cual es devuelto al ejecutar el comando \texttt{heroku create}). En este ejemplo el host es \texttt{gentle-gorge-9766.herokuapp.com}
+
+\begin{verbatim}
+ALLOWED_HOSTS = [u'pure-bayou-13155.herokuapp.com']
+\end{verbatim}
+Usando git ``comite'' esta ultima modificación (\texttt{git commit -m ``modify ALLOWED\_HOST variable'' myshop/settings.py})  y sube la aplicación usando el siguiente comando:
+
+ 
+\begin{verbatim}
+$ git push heroku master
+ 
+Initializing repository, done. 
+Counting objects: 11, done. 
+Delta compression using up to 2 threads. 
+Compressing objects: 100% (9/9), done. 
+Writing objects: 100% (11/11), 2.36 KiB, done. 
+Total 11 (delta 0), reused 0 (delta 0) 
+ 
+-----> Python app detected 
+-----> No runtime.txt provided; assuming python-2.7.6. 
+-----> Preparing Python runtime (python-2.7.6) 
+-----> Installing Setuptools (2.1) 
+-----> Installing Pip (1.5.4) 
+-----> Installing dependencies using Pip (1.5.4) 
+       Downloading/unpacking Django==1.6.2 (from -r requirements.txt (line 1)) 
+     ...
+       Successfully installed Django dj-database-url dj-static gunicorn psycopg2 static pystache 
+       Cleaning up... 
+ 
+-----> Discovering process types 
+       Procfile declares types -> web 
+ 
+-----> Compressing... done, 34.8MB 
+-----> Launching... done, v5 
+       http://gentle-gorge-9766.herokuapp.com deployed to Heroku 
+ 
+To git@heroku.com:gentle-gorge-9766.git 
+* [new branch]      master -> master 
+ \end{verbatim}
+
+El siguiente paso es arrancar la aplicación que ya está en Heroku. Para ello ejecutamos el siguiente comando:
+
+ \begin{verbatim}
+$ heroku ps:scale web=1
+ \end{verbatim}
+
+Ahora puedes comprobar si tu aplicación se está ejecutando correctamente abriendo la dirección proporcionada por Heroku. También puedes ejecutar el siguiente comando:
+
+ \begin{verbatim}
+$ heroku open
+Opening gentle-gorge-9766... done
+ \end{verbatim}
+
+Muy importante: tu aplicación no funcionará hasta que crees la base de datos de postgres en Heroku. Una descripción de como hacerlo se encuentra en la subsección  \ref{subsec:shellHeroku} 
+
+\subsection{Comprobando los logs}
+
+ Heroku permite consultar el log de nuestra aplicación. Para ello hay que ejecutar el comando:
+ 
+\begin{verbatim}
+$ heroku logs
+2014-02-23T19:38:25+00:00 heroku[web.1]: State changed from created to starting
+2014-02-23T19:38:29+00:00 heroku[web.1]: Starting process with command `gunicorn hellodjango.wsgi`
+2014-02-23T19:38:29+00:00 app[web.1]: Validating models...
+2014-02-23T19:38:29+00:00 app[web.1]:
+\end{verbatim}
+
+
+\subsection{Usando el Shell en Heroku}
+\label{subsec:shellHeroku}
+Heroku nos proporciona el comando heroku run que nos permite ejecutar los comandos que usamos cuando trabajamos en local con nuestra aplicación Django, 
+
+Por ejemplo, podemos usar el comando heroku run para ejecutar la shell de Django y trabajar con los datos almacenados en nuestra aplicación desplegada en Heroku:
+
+\begin{verbatim}
+$ heroku run bash 
+
+\end{verbatim}
+
+Desde el  shell podemos, por ejemplo, para crear el esquema inicial de la base de datos
+
+\begin{verbatim}
+ heroku run python manage.py migrate
+\end{verbatim}
+
+\subsection{Ejecutando los test en Heroku}
+Como puede que hayáis  notado para ejecutar los test se crea una base de datos temporal. Desafortunadamente los usuarios gratuitos de Heroku no tienen privilegios para crear bases de datos
+en postgres y por lo tanto los test fallarían al ser ejecutados.
+
+Una solución ha este problema sería usar en el proyecto sqlite3 en lugar de postgres. Esta solución en general no es aceptable porque tras 30 minutos de inacción Heroku borra el ordenador virtual en donde se ejecuta la aplicación y con ello se pierden los datos almacenados en sqlite3 (aunque no se pierden los datos almacenados en postgres). Por lo tanto para ejecutar nuestra aplicación tenemos que usar postgres pero no es el caso para ejecutar los test puesto que tras la finalización del test no es necesario persistir los datos. Por lo tanto la solución propuesta sería modificar el fichero
+\texttt{settings.py} de forma que si esta definida la variable de entorno ``SQLITE'' use la base de datos de sqlite y en caso contrario use la de postgres. El codigo necesario seria:
+
+\begin{verbatim}
+DATABASES={}
+if os.getenv('SQLITE',False):
+    DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+else:
+    import dj_database_url
+    DATABASES['default']= dj_database_url.config()
+\end{verbatim}
+
+Antes de ejecutar los test habría que definir en la terminal la variable SQLITE \texttt{export SQLITE=1} y una vez finalizada la ejecución habría que anular la definición \texttt{unset SQLITE}. 
+
+\subsection{Ficheros ``estaticos''  on heroku}
+Por diseño, Django en Heroku no coge los ficheros estáticos (css, js, imagenes, etc) del proyecto sino que exige que estén en un directorio aparte que el crea usando el comando \texttt{python manage.py collectstatic}. Para que funcione correctamente la generación, si todavía no lo has hecho, debes definir en el fichero \texttt{settings.py} las variables.
+
+\begin{verbatim}
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticHeroku')
+\end{verbatim}
+
+y añadir al fichero \texttt{urls.py}
+\begin{verbatim}
+from django.conf import settings
+from django.conf.urls.static import static
+...
+
+
+urlpatterns += static(settings.STATIC_URL,\
+                      document_root=settings.STATIC_ROOT)
+
+\end{verbatim}
+
+\section{Material a entregar al finalizar la práctica} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\begin{enumerate}
+ \item Escribid una memoria llamada memoria.pdf de no más de dos páginas de extensión en formato pdf. En la memoria describid la arquitectura de Django. En particular se desea que comentéis cada pagina de la presentación titulada Arquitectura de Django (accesible en moodle). Añadid este fichero al repositorio del proyecto.
+
+\item Subid a moodle, en un único fichero zip, el proyecto de PyCharm conteniendo la aplicación desarrollada en esta práctica llamada \texttt{rango}. En concreto se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign2\_final.zip  master} desde el directorio del proyecto (\texttt{tango\_with\_django\_project})
+
+\item Debajo del link usado para subir el proyecto hay otro llamado \texttt{Heroku URLS práctica\_2}, conectaros al mismo y escribid la dirección de Heroku donde esté desplegada vuestra aplicación. En Heroku la base de datos debe estar poblada con el contenido del fichero populate.py
+
+\item  Aseguraros de que todos los tests desarrollados para esta entrega son satisfechos por vuestros código (tanto localmente como en Heroku). No es admisible que se modifique el código de los tests.
+
+\end{enumerate}
+\end{framed}
+\end{minipage}\\\\
+
+\subsection{Enlaces de Interés}
+
+\begin{itemize}
+ \item \url{https://devcenter.heroku.com/articles/getting-started-with-python#introduction}
+\end{itemize}
+
+
+\section{Criterios de evaluación}
+
+La calificación de esta práctica es \textit{Apto} o \textit{No Apto}
+Para aprobar es necesario satisfacer los siguientes criterios:
+\begin{itemize}
+ \item Que la aplicación rango descrita en el libro de referencia este desplegada en Heroku (y el URL este accesible en el URL subido a moodle usando el link denominado Heruko URL practica\_2). En Heroku  la base de datos debe estar poblada con el contenido del fichero populate.py
+ \item Que la memoria y el código necesario para ejecutar la aplicación se haya entregado en moodle y  sea posible ejecutarlos localmente en los laboratorios de informática.
+ \item Que el código entregado satisfaga todos los tests.
+\end{itemize}
+
+\newpage
+\appendix
+
+\section{Working with Templates}
+\label{app:workingWithTemplates}
+Code for section ``10.2.1. Abstracting Further''
+
+\begin{verbatim}
+ <!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Rango - {% block title %}How to Tango with Django!{% endblock %}</title>
+    </head>
+
+    <body>
+        <div>
+            {% block body_block %}{% endblock %}
+        </div>
+
+        <hr />
+
+        <div>
+            <ul>
+                <li><a href="/rango/add_category/">Add a New Category</a></li>
+                <li><a href="/rango/about/">About</a></li>
+            </ul>
+        </div>
+    </body>
+</html>
+\end{verbatim}
+
+Code for section ``10.3. Template Inheritance''
+
+\begin{verbatim}
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body_block %}
+    <h1>{{ category.name }}</h1>
+    {% if category %}
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+                <strong>No pages currently in category.</strong>
+        {% endif %}
+
+                <a href="/rango/add_page/{{category.slug}}/">Add a Page</a>
+    {% else %}
+        The specified category {{ category.name }} does not exist!
+    {% endif %}
+
+{% endblock %}
+\end{verbatim}
+
+Code for section ``10.4. Referring to URLs in Templates'' (tercer listado)
+
+\begin{verbatim}
+ <div>
+    <ul>
+        <li><a href="{% url 'add_category' %}">Add a New Category</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
+</div>
+\end{verbatim}
+Code for section ``10.4. Referring to URLs in Templates'' (cuarto listado)
+\begin{verbatim}
+{% for category in categories %}
+    <li><a href="{% url 'show_category'  category.slug %}">{{ category.name }}</a></li>
+{% endfor %}
+\end{verbatim}
+
+
+\end{document}

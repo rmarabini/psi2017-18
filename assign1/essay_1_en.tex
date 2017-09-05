@@ -1,0 +1,199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple Sectioned Essay Template
+% LaTeX Template
+% i
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing essay content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%       PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+% comentarios para el PROFESOR
+%lA PRIMERA MEDIA HORA USARLA PARA INTRODUCIR:
+% PYTHON
+% DAR UNA PEQUEÑA DEMO DE GIT
+% USAR UNA VEZ PYCHARM
+
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+%\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{url}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry} % Required to change the page size to A4
+%\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{framed}
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{{Assignment-1}} 
+\fancyhead[LO]{Computer Systems Project}
+%\fancyhead[RO]{{\leftmark}} 
+\fancyfoot[LE,RO]{{ \thepage }}
+
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\linespread{1.2} % Line spacing
+
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\newcounter{ejercicioNo}
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%       TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Universidad Aut\'{o}noma de Madrid}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Proyecto de Sistemas Informaticos}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Departamento de Informatica}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Computer Science Department}\\[0.5cm] % Minor heading such as course title
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Computer Systems Project\\[0.5cm] Assignment - 1}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft}
+% \large
+%\emph{Author:}\\
+%Roberto  \textsc{Marabini Ruiz} % Your name
+%\end{flushleft}
+%\end{minipage}
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[4cm]
+
+%{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+\vfill % Fill the rest of the page with whitespace
+%\begin{minipage}{0.4\textwidth}
+\begin{flushright}
+ \large
+%\emph{Author:}\\
+Roberto  \textsc{Marabini Ruiz} % Your name
+\end{flushright}
+%\end{minipage}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%       TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Include a table of contents
+
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+
+%----------------------------------------------------------------------------------------
+%       OBJETIVOS
+%----------------------------------------------------------------------------------------
+
+\section {Goals}
+
+The primary objective of this course is to develop a web application using a professional development environment. In this course we will use the environment called Django which has been implemented using the programming language Python. During this first assignment we will introduce: the programming language Python, the version control software called git and the IDE PyCharm. 
+
+%------------------------------------------------
+%\subsection{Introdución} % Sub-section
+
+%Python es un lenguaje interpretado. No hay declaraciones de tipos de variables, parámetros, funciones o métodos. Los ficheros con código Python suelen acabar con la extensión \emph{py}.
+
+%Conectaros a \textit{Google’s Python class} (\url{https://developers.google.com/edu/python/}) y consultar el material destinado al primer d\'{i}a del curso.  Esto es, \texttt{Python Set  Up}, \texttt{Introduction}, \texttt{Strings}, \texttt{Lists}, \texttt{Sorting}, and \texttt{Dict and File pages}. Igualmente debes realizar los ejercicios descritos en los los ficheros \texttt{string1.py}, \texttt{string2.py}, \texttt{list1.py}, \texttt{list2.py} and \texttt{wordcount.py}.
+
+%Como editor (IDE) utilizad \texttt{pycharm}. Durante las practicas te pediremos que entregues proyectos creados en este entorno.
+
+\textbf{A note about Grading}: Since the solution to the exercises proposed in this assignment are available on the Internet this practice will be marked as PASS or FAIL. The purpose of this first assignment is to serve as an introduction to PYTHON and as a means of self-evaluate your programming skills in this language. If you decide to check the source code available in the internet we advise you not to copy and paste but to retype the code.
+
+
+%\textbf{Recomendación}: Debéis realizar una única entrega por grupo pero en esta primera práctica os aconsejamos que trabajéis  de forma independiente y cada miembro del equipo realice todos los ejercicios propuesto.
+%\begin{lstlisting} [frame=single,language=java,lineskip={-1.0pt},breaklines=true] 
+%##!/usr/bin/env python
+%print 'Hola'
+%\end{lstlisting}
+%\section{Pycharm}
+%PyCharm es un IDE (Entorno de desarrollo integrado) desarrollado específicacmente para Python.
+%Recomendamos su uso en esta asignatura 
+
+\section{First Week}
+Check the \textit{Google 's Python class} (\url{https://developers.google.com/edu/python/}) and focus on the sections entitled \texttt{Python Set Up}, \texttt {Introduction} and \texttt{Strings}. After executing the examples proposed  implement the exercises described in the files \texttt{string1.py} and \texttt{string2.py} (available at url \url{https://developers.google.com/edu/python/google-python-exercises.zip}). Create a Git repository in Bitbucket and use it for code control versioning.
+
+\section{Deliverables to be Handed in after the First Week}
+\begin{minipage}{\linewidth}
+\begin{framed}
+%%\addtocounter{ejercicioNo}{1} 
+%%Ejercicio \arabic{ejercicioNo}:
+%\label{Ejercicio_1}
+\begin{enumerate}
+ \item Connect to URL \url{http://bitbucket.org/}, register and log-in. Your username must be the first letter of your name followed by your family name, if the user has already been assigned add a number at the username end.
+ \item Create a repository called psi\_groupNumber\_pairNumber\_p1. The repository ``access level''  must be ``This is a private repository''. After creating the repository clone it to the local computer using the command \texttt{git clone repositoryPath}.
+
+\item After creating the repository:
+ \begin {itemize}
+ \item Modify the access properties so that the two members of your group  can modify it.
+ \item  The first member of the group should upload the code necessary to create the program \texttt{hello.py} (the code is available in the ``Phyton Set Up'' section  of Google's python class as part of the zip file  \texttt{google-python-exercises.zip}).
+   \item On a different computer the second member of the group (using her Bitbucket username) must: (1) download the repository, (2) modify the file to write ``Hola Mundo'' instead of ``Hello World'' and (3) upload the modificated code to the repository
+   \item The first member of the group (using her Bitbucket username) must: (1) dowload the modificated code, (2) create a \textbf{NEW} file called hail.py that is identical to hello.py file but for the greeting that changes from `` Hello World '' to `` Hallo Welt '' and (3) upload the changes to the repository.
+\end{itemize}
+\item Add the exercises \texttt{string1.py} and \texttt{string2.py} to the repository and upload it to Bitbucket.
+\end{enumerate}
+\end{framed}
+\end{minipage}\\\\
+
+
+%------------------------------------------------
+
+
+%------------------------------------------------
+\section{Second Week}
+Connect to \textit{Google's Python class} (\url{https://developers.google.com/edu/python/}) and focus on the sections entitled: \texttt{Lists}, \texttt {Sorting} and \texttt {Dict and Files}. After executing the examples proposed implement the exercises described in the files entitled: \texttt{list1.py} and \texttt{wordcount.py}. Use the file called \texttt{alice.txt} as input of the wordcount.py program.
+
+\section{Deliverables to be Handed in after the Second Week}
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+This assignment does NOT require to hand in any report. Using moodle upload a single zip file containing:
+\begin{enumerate}
+\item A PyCharm project containing the files: \texttt{string1.py}, \texttt{string2.py}, \texttt{list1.py}, \texttt{wordcount.py} and \texttt{alice.txt}.
+\end{enumerate}
+\end{framed}
+\end{minipage}\\\\
+
+\section{Grading Criteria}
+
+This assignment will be grade as PASS or NOT PASS.
+In order to pass you must satisfy the following two criteria:
+\begin{itemize}
+ \item The four proposed exercises (\texttt{string1.py}, \texttt{string2.py}, \texttt{list1.py}, \texttt{wordcount.py}) must produce the correct results.   
+ \item Using git you have created the requested repository and, uploaded the programs and the requested modifications
+\end{itemize}
+ In this assignment we will not take into account the code quality providing it works and a averaged human being can understand it without descending into madness.
+\end{document}

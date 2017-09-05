@@ -1,0 +1,2 @@
+latexmk -pvc -pdf essay_1_en.tex 
+

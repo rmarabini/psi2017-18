@@ -1,0 +1,3 @@
+okular essay_4.pdf&
+latexmk -pvc -pdf essay_4.tex 
+

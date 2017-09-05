@@ -1,0 +1,594 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple Sectioned Essay Template
+% LaTeX Template
+% i
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing essay content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{amsmath}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{caption}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry} % Required to change the page size to A4
+%\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{framed}
+%\usepackage{hyperref}
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{{Práctica-3}} 
+\fancyhead[LO]{Proyecto de Sistemas Informáticos}
+%\fancyhead[RO]{{\leftmark}} 
+\fancyfoot[LE,RO]{{ \thepage }}
+
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\linespread{1.2} % Line spacing
+
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\newcounter{ejercicioNo}
+%\newcommand{\heroku}{https://pure-bayou-13155.herokuapp.com/}
+
+\newcommand{\herokuurl}[1]{\url{https://pure-bayou-13155.herokuapp.com/#1}}%
+\newcommand{\ttt}[1]{\texttt{#1}}%tt
+\newcommand{\hhh}[1]{\texttt{#1}}%html
+\newcommand{\ppp}[1]{\texttt{#1}}%python
+\newcommand{\views}{\texttt{views.py}}%
+\newcommand{\modelss}{\texttt{models.py}}%
+\newcommand{\settings}{\texttt{settings.py}}%
+\newcommand{\urls}{\texttt{urls.py}}%
+\newcommand{\django}{\texttt{Django}}%
+\newcommand{\admin}{\texttt{admin.py}}%
+\newcommand{\database}{\texttt{onlineshop}}%
+\newcommand{\proyecto}{\texttt{onlineshop}}%
+\newcommand{\aplicacionsh}{\texttt{shop}}%
+\newcommand{\heroku}{\texttt{Heroku}}
+\newcommand{\populatescript}{\texttt{populate\_\proyecto.py}}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Universidad Aut\'{o}noma de Madrid}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Proyecto de Sistemas Informaticos}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Departamento de Informatica}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Departamento de Inform\'{a}tica}\\[0.5cm] % Minor heading such as course title
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Proyecto de Sistemas Inform\'{a}ticos\\[0.5cm] Pr\'{a}ctica - 3}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft}
+% \large
+%\emph{Author:}\\
+%Roberto  \textsc{Marabini Ruiz} % Your name
+%\end{flushleft}
+%\end{minipage}
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[4cm]
+
+%{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+\vfill % Fill the rest of the page with whitespace
+%\begin{minipage}{0.4\textwidth}
+\begin{flushright}
+ \large
+%\emph{Author:}\\
+Roberto  \textsc{Marabini Ruiz} % Your name
+\end{flushright}
+%\end{minipage}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Include a table of contents
+
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+
+%----------------------------------------------------------------------------------------
+%	OBJETIVOS
+%----------------------------------------------------------------------------------------
+
+\section {Introducción}
+
+\subsection{Objetivos} % Sub-section
+En esta práctica se enuncia el proyecto a implementar en la asignatura, se crea el modelo de datos y se implementará una primera versión básica del mismo..
+
+%We are going to start with a new Django project to build an online shop. Our users
+%will be able to browse through a product catalog and add products to a shopping
+%cart. Finally, they will be able to checkout the cart and place an order. 
+%------------------------------------------------
+\subsection{Proyecto a implementar: Tienda ``On-line''} % Sub-section
+Vamos a implementar una tienda ``on-line''. Los usuarios de esta tienda deben ser capaces de consultar un catalogo y elegir productos del mismo que serán almacenados en un ``shopping cart''. Finalmente, debe ser posible realizar el pedido de los artículos seleccionados.
+
+El proyecto se dividirá en tres partes: 
+
+\begin{itemize}
+ \item Crear el catálogo de productos
+ \item Construir el ``shopping cart''
+ \item Realizar los pedidos
+\end{itemize}
+
+Un ejemplo de la aplicación solicitada está accesible en el URL \herokuurl{}
+
+
+\subsection{Requerimientos}
+
+
+\begin{itemize}
+    \item El catalogo de nuestra tienda está compuesto por una colección de productos agrupados en categorías. Cada producto tiene un \texttt{nombre}, una \texttt{descripción}, una \texttt{imagen}, un \texttt{precio}, y el \texttt{número} de unidades disponibles del mismo.
+    \item El ``shopping cart'' permite a los usuarios almacenar temporalmente los productos que deseen comprar. El ``shopping cart'' tiene que estar asociado a la sesión de forma que 
+    los productos seleccionados se mantengan en el mismo durante la visita del usuario.
+    \item Cuando se realice un pedido, el mismo debe ser almacenado en la base de datos del sistema conteniendo toda la información relacionada con el cliente y los productos que se compren.
+
+
+\end{itemize}
+
+\section{Trabajo a Desarrollar durante la Primera Semana de la práctica: Crear el Modelo del Catalogo de Productos}
+A continuación te ofrecemos el esquema de la base de datos que servirá para almacenar la información relacionada con el catalogo. Recordad que el sistema añadirá a todas las relaciones un atributo extra llamado \texttt{id} que funcionará como clave primaria. No olvidéis modificar el fichero \settings{} para que la información se almacene en una la base de datos postgres llamada \database. 
+
+\begin{verbatim}
+  
+  Category(catName, catSlug)
+    catName  => string, not null, unique
+    catSlug  => string, not null, unique % usa en Django un SlugField
+
+  Product(category, proName, proSlug, image, description, 
+           price, stock, availability, created, updated)
+    category     => Category, not null, Foreign Key (Category)
+    proName      => string, not null, unique
+    proSlug      => string, not null, unique % usa en Django un SlugField 
+    image        => string, not null % usa en Django: 
+                               %ImageField(upload_to = 'images/products')
+    description  => string, not null
+    price        => real, not null   % usa en Django DecimalField  
+    stock        => int, not null, default=1
+    availability => Bolean, not null, default=true; 
+    created      => TimeStamp, default = now % usa en Django DateTimeField
+    updated      => TimeStamp, default = now % usa en Django DateTimeField
+      
+\end{verbatim}
+
+
+     
+\section{Trabajo a Presentar Durante la Primera Semana de la práctica} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+Ejercicio \arabic{ejercicioNo} - Diseño de una base de datos
+
+Subid a moodle, en un único fichero zip, el proyecto de \django{} conteniendo: 
+
+\begin{itemize}
+ \item Aplicación \django{}  en la que se implemente la base de datos descrita en el punto anterior. Cread un nuevo proyecto llamado \proyecto{} y un repositorio nuevo en Bitbuket para guardar esta aplicación. Dentro del proyecto \proyecto{} crea una aplicación llamada \aplicacionsh. 
+
+ \item La aplicación debe contener una pagina de administración (interfaz Django) en la direcci\'on \url{http://hostname:8000/admin/}) capaz de introducir y borrar datos en la base datos. Tanto el nombre de usuario como la clave deben ser \textit{alumnodb}. (un error típico a la hora de crear la pagina de administración es no registrar los modelos en \admin).
+ 
+ \item Configura el interface de administración de forma que: (1) cuando se muestren las categorías se muestre una tabla en la que sean visibles los atributos \texttt{catName} y \texttt{catSlug} y, (2) cuando se muestren los productos se muestre una tabla en la que sean visibles los atributos \texttt{prodName, prodSlug, price, stock, available, created y updated}.
+
+ %Customise the Admin Interface - so that when you view the Page model it displays in a list the category, the name of the page and the url.
+ 
+ \item Los datos deben persistirse en una base de datos tipo postgres llamada \database.
+
+ \item Se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign3\_first\_week.zip  master}.
+
+ \end{itemize}
+
+Finalmente, \textbf{desplegar la aplicación en Heroku como una aplicación \underline{nueva} (no uséis la creada en la práctica anterior)}. Usando moodle, en particular el link llamado \url{Heroku_URL}, escribid la dirección (URL) en el que esté accesible la aplicación en \heroku. (Recordad que antes de que se pueda usar la plicación se debe:  crear la base de datos, crear las tablas de la base de datos \texttt{heroku run python manage.py migrate}- y crear el usuario usado en admin)
+
+\end{framed}
+\end{minipage}
+
+%------------------------------------------------
+
+
+%------------------------------------------------
+
+\section{Trabajo a Desarrollar durante la Segunda Semana de la práctica} % Sub-sub-section
+Vamos a poblar la base de datos y a practicar el acceso a la misma. 
+
+\subsection{Poblar la Base de Datos}
+Créese un script en  python llamado \populatescript{} que pueble la base de datos (el script se creará en el directorio raíz del proyecto). El script deberá crear tres categorías conteniendo cada una de las mismas al menos 6 productos.
+Cada pareja debe crear una tienda que venda objetos diferentes tal y como indica la  tabla~\ref{asignacion}:
+
+\begin{table}[H]
+\begin{tabular}{rl}
+\hline
+Pareja & Tienda \\ \hline
+1  & flores    \\
+2  & perfumes  \\
+3  & musica    \\
+4  & libros    \\
+5  & comida congelada    \\
+6  & vino    \\
+7  & electrodomesticos  \\
+8  & material escritura    \\
+9  & electrónica\\
+10  & zapatos\\
+11  & ropa    \\
+12  & repostería  \\
+13  & muebles    \\
+14  & repuestos coche    \\
+15  & películas    \\ \hline
+\end{tabular}
+\centering
+\caption{Asignación de parejas y tiendas}
+\label{asignacion}
+\end{table}
+
+Para manipular las imágenes se puede utilizar un código similar a:
+
+\begin{verbatim}
+from django.core.files import File
+
+imageObject = File(open(os.path.join(directory_with_images, image_name),'r'))
+p = Product.objects.get_or_create(category = ...,
+                                  prodName = ...,
+                                  ...)[0]
+p.image.save(image_name, imageObject, save = True)
+\end{verbatim}
+
+Las imagenes se guardan en el directorio definido por la variable  \ttt{MEDIA\_ROOT} que está declarada en \settings{} (vease listados~\ref{settings}~y~\ref{urls}).
+
+\subsection{Acceso a la Base de Datos}
+
+Créese un fichero en python llamado \texttt{query\_onlineshop.py} que realice las siguientes tareas (NOTA1: este puede ser un buen momento para releer el capítulo \textit{Models and Databases} secciones \textit{Django Models and the Django Shell} y \textit{Creating a Population Script}. NOTA2: guardad el fichero \texttt{query\_onlineshop.py} en la raíz del proyecto):
+
+\begin{itemize}
+    \item Cree una categoría llamada \textit{ofertas} en caso de que no exista 
+    \item Cree una categoría llamada \textit{gangas} en caso de que no exista 
+    \item En caso de no existir cree tres productos llamados \textit{oferta~1}, \textit{oferta~2} y \textit{oferta~3} (necesitarás tres imágenes) que pertenezca a la categoría \textit{ofertas}. (El espacio en blanco entre oferta y el número es intencionado)
+    \item En caso de no existir cree tres productos llamados \textit{ganga~1}, \textit{ganga~2} y \textit{ganga~3} (necesitarás tres imágenes) que pertenezca a la categoría \textit{gangas}. (El espacio en blanco entre ganga y el número es intencionado)
+    \item Realice una consulta que devuelva un listado con todos los productos asociados a la categoría \textit{gangas}.
+    \item Imprima por pantalla el resultado de la consulta anterior.
+    \item Realice una consulta que dado el producto con \texttt{proSlug}=\textit{oferta-1} nos permita obtener la categoría a la que pertenece el producto.
+    \item Imprima por pantalla el valor del atributo \texttt{catSlug} de la categoría resultante de la consulta anterior.
+    \item Repite la consulta anterior usando el producto con nombre \textit{oferta\_10} (el cual no existe). La consulta debe detectar el problema e imprimir por pantalla \texttt{producto ``nombre\_del\_producto'' inexistente}.
+    \item Subid el fichero \texttt{query\_onlineshop.py} a Heroku de forma que se pueda ejecutar con el comandos
+    \texttt{heroku run python query\_onlineshop.py}.
+    
+\end{itemize}
+
+El siguiente código, que muestra como crear un usuario con id=10 en caso de que no exista, puede serviros de guía (obviamente vosotros no tenéis que crear ningún usuario).
+
+\begin{lstlisting} [language=python,lineskip={-1.0pt},breaklines=true]
+    import os,django
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ratonGato.settings')
+    django.setup()
+    from server.models import User
+    
+    #Compruebe si existe un usuario con id=10
+    # en caso contrario crear el usuario
+    id=10
+    username='u10'
+    password='p10'
+    u10 = User.objects.get_or_create(id=id, username=username, password=password)
+    #busqueda de usuarios con id=10
+    users = User.objects.filter(id=id)
+    
+    # Si se sabe que la consulta va a devolver un resultado unico
+    # como es el caso se puede usar get en lugar de filter
+    # en este caso el valor devuelto no sera una listado
+    # sino el usuario solicitado
+    #   user = User.objects.get(id=id)
+    #
+    # En python las excepciones se captuan con la pareja try except.
+    # una consulta sin resultado devuelve una excepcion de tipo ObjectDoesNotExist
+    # try:
+    #    consulta_sin_resultado
+    # except ObjectDoesNotExist:
+    #    accion_a_tomar
+\end{lstlisting}
+
+
+\section{Trabajo a Presentar durante la Segunda Semana de la Práctica} % Sub-sub-section
+
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+Ejercicio \arabic{ejercicioNo} - Consultas sencillas:\\
+Entregad en moodle usando un único fichero zip el proyecto \texttt{onLineShop} de Django que incluya:
+ \begin{itemize}
+   \item el script \populatescript 
+   \item el script \texttt{query\_onlineshop.py} 
+ \end{itemize}
+ Igualmente actualizad \heroku{} de forma que se puedan ejecutar el script \texttt{query\_onlineshop.py} con el comando \texttt{heroku run python query\_onlineshop.py}. 
+
+\end{framed}
+\end{minipage}
+
+\section{Trabajo a Desarrollar durante la Tercera y Cuarta Semanas de la práctica} % Sub-sub-section
+
+Ahora que ya tenemos la base de datos poblada vamos a crear dos vistas para mostrar una galería de productos (\herokuurl{}) y los productos en detalle (\herokuurl{85/butterfly-stars-tat/}). El trabajo a realizar lo dividiremos en varios pasos:
+
+\begin{enumerate}
+ \item Montar la infraestructura para poder usar ficheros de estilo (css)
+ \item Definir una template base (\hhh{base.html}) de la que heredaran el resto de los templates
+ \item Implementar los métodos encargados de recolectar la información necesaria para crear las vistas (\views)
+ \item Modificar los ficheros \urls{} para que apunten a los nuevos métodos.
+ \item Definir las templates para ambas vistas. Llamaremos a las templates \hhh{list.html} y \hhh{detail.html} ambas heredarán de \hhh{base.html}.
+ \item Ejecutar los tests.
+ \item Desplegar en \heroku.
+ %\item modificar la galeria de productos mostrada gracias a \texttt{list.html} para que pagine, esto es, en lugar de mostrar todos los productos los ... 
+ 
+\end{enumerate}
+
+\subsection{Montar la Infraestructura para Usar Ficheros de Estilo (css)}
+
+Para crear una aplicación web estéticamente atrayente os hará falta utilizar ficheros de estilos (css). Estos ficheros debéis colocarlos en un sitio accesible por \django{} y referirlos adecuadamente. Por ejemplo, para acceder al fichero llamado \texttt{mycss.css} situado en el directorio \texttt{path\_al\_projecto}/static/css tendriais que modificar \texttt{settings.py}
+
+\begin{lstlisting}
+\label{settings}
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+STATIC_PATH = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    STATIC_PATH,
+)
+#files uploaded by users go here
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+\end{lstlisting}
+y en el fichero de template habría que añadir las lineas ( \texttt{\{\% load  staticfiles \%\}} debe ser la primera línea del fichero):
+
+\begin{lstlisting}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/mycss.css" %}"/>
+{% endblock extra_css %}
+\end{lstlisting}
+
+Por último se deben añadir las siguientes líneas al fichero \urls del proyecto :
+
+\begin{lstlisting}
+\label{urls}
+from django.conf.urls.static import static
+...
+urlpatterns += static(settings.STATIC_URL,\
+                      document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL,\
+                      document_root=settings.MEDIA_ROOT)
+\end{lstlisting}
+
+Para probar que la configuracion es correcta crea un fichero llamado \texttt{mycss.css}
+en el directorio \texttt{static/css} e intenta acceder al mismo en el URL
+\url{http://127.0.0.1:8000/static/css/mycss.css} (no olvides arrancar el servidor primero)
+
+\subsection{Definir una template base de la que heredarán el resto de los templates}
+   
+   Usando las técnicas descritas en el capítulo \textit{Working with Templates} crea una 
+template básica (llamada \texttt{templates/shop/base.html}) de la que hereden el resto de las páginas web. Tienes libertad para usar el diseño que desees pero como poco debe contener cuatro bloques llamados title, header, shoppingcart and main. Sería razonable modificar vuestro fichero css para dar una apariencia atractiva a la página web.
+
+Para probar la template podéis añadir un método nuevo en \texttt{views.py} similar a
+\begin{verbatim}
+ def base(request):
+        return render(request, 'shop/base.html')
+\end{verbatim}
+y tras modificar \texttt{urls.py} adecuadamente debería ser posible ver la template en la dirección \url{http://127.0.0.1:8000/base/}
+
+\subsection{Implementar los Métodos Encargados de Recolectar la Información Necesaria para Crear las Vistas}   
+
+%Building catalog views
+%In order to display the product catalog, we need to create a view to list all the
+%products or filter products by a given category. Edit the views.py file of the shop
+%application and add the following code to it:
+
+\subsubsection{Método que Lista los Productos}(\herokuurl{})
+Para poder ver el catálogo necesitamos una vista (en \texttt{views.py}) capaz de mostrar todos los productos (comportamiento por defecto) o  los productos asociados a una categoría (comportamiento cuando se le pasa catSlug como parámetro). Implementa una función en \views que satisfaga la siguiente definición:
+
+\begin{verbatim}
+def showProducts(request, catSlug=None):
+   
+    #Your code goes here
+    #queries that fill, category, categories and products
+   
+   return render(request,'shop/showProducts.html', 
+                   {'category': category,
+                    'categories': categories,
+                    'products': products})
+
+\end{verbatim}
+donde\\
+
+\begin{equation}
+    category=
+    \begin{cases}
+      None, & \text{if}\ catSlug=None \\
+      \text{objeto de la clase \texttt{Category} con \texttt{Category.catSlug=catSlug}}, & \text{en el resto de los casos}
+    \end{cases}
+\end{equation}\\
+\begin{equation}
+    categories = \text{listado con todos los objetos de tipo \texttt{Category}}
+\end{equation}\\
+\begin{equation}
+    products=
+    \begin{cases}
+      \text{listado con todos los \texttt{Products}} & \text{if}\ catSlug=None \\
+      \text{listado con los \texttt{Products} asociados a } category, & \text{en el resto de los casos}
+    \end{cases}
+\end{equation}\\
+  
+\subsubsection{Método que muestra un producto en detalle} (\herokuurl{85/butterfly-stars-tat/})
+%We also need a view to retrieve and display a single product. Add the following
+%view to the views.py file:
+Igualmente necesitaremos una vista que muestre los productos en detalle. Implementa una función en \views que satisfaga la siguiente definición:
+
+\begin{verbatim}
+def detailProduct(request, prodId, prodSlug):
+    #Your code goes here
+    #query that returns a product with id=protId
+    
+    return render(request, 'shop/detailproduct.html', {'product': product})
+\end{verbatim}
+donde $product$ es un objeto de la clase \texttt{Product} con $id=prodId$. Notad que 
+los argumentos pasados a \texttt{detailProduct} son redundantes puesto que hay una relación uno a uno entre el $id$ y $prodSlug$. De todas formas es una buena idea crear URLs para los productos que sean fácilmente inteligibles por los humanos (los que contienen el slug) y para los ordenadores (los que tiene el id).
+
+\subsection{Modificar los Ficheros urls.py}
+Crea un fichero \texttt{urls.py} en la aplicación $shop$ e inclúyelo en el fichero \texttt{urls.py} del proyecto. El fichero \texttt{urls.py} de la aplicación debe tener tres entradas. La tabla~\ref{tab:urls} contiene los URLs, métodos en \texttt{views.py} y etiquetas (name) a utilizar.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|^$|                               & \verb|views.product_list|  & \verb|product_list|\\
+ \verb|^(?P<category_slug>[-\w]+)/$|     & \verb|views.product_list|  & \verb|product_list_by_category|\\
+ \verb|^(?P<id>\d+)/(?P<slug>[-\w]+)/$|  & \verb|views.product_detail| & \verb|product_detail|\\ 
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas}
+\label{tab:urls}
+\end{table}
+
+
+\subsection{Definir las templates...}
+Define las dos templates invocadas por las vistas y que heredarán de \texttt{base.html} (llámalas \texttt{list.html} y \texttt{detail.html}). 
+La información mostrada por ambas templates debe ser equivalente a la que se muestra en nuestro ejemplo (\herokuurl{}). En moodle junto al enunciado de la practica tenéis un fichero de test llamado \texttt{tests.py}. Colocadlo en el directory shop y ejecutadlo con el comando \texttt{python ./manage.py test shop.tests.viewsTests --keepdb}. Si el resultado es erróneo modificar vuestro código, bajo ningún concepto podéis modificar el código de \texttt{tests.py} sin la aprobación explicita del profesor.
+
+Usando como guía el fichero \texttt{tests.py} crea un nuevo fichero de test denominado \texttt{tests\_populate.py} que tenga la misma funcionalidad que \texttt{tests.py} pero que
+carge los datos y use los metodos usados en el script \populatescript. Tendréis que modificar los asserts adecuadamente. 
+
+\texttt{tests.py} se conecta directamente a los métodos escritos en python. Existe un segundo fichero de test llamado \ttt{web\_tester.py} que se conecta a nuestro servidor usando html. Modificadlo para que se adecue a vuestros datos y añadid la modificación a vuestro repositorio (No debería hacer falta modificar nada por debajo de la linea que contiene el texto ``\#\#DO NOT CHANGE ANYTHING BELLOW THIS POINT'') 
+
+\subsection{Despliega el proyecto en Heroku}
+Cread un proyecto nuevo en \heroku{} y desplegar la aplicación. Comprueba que la aplicación funciona ejecutando el fichero \ttt{web\_tester.py} tras actualizar la variable \ttt{base\_url}. 
+
+Nota1, tras ejecutar el fichero \ttt{web\_tester.py} la aplicación funcionará. Sin embargo, en el momento en que reinicies tu aplicación (lo que ocurre cuando la actualizas o cuando está más de 30 minutos inactiva) verás que todas las imágenes han desaparecido. Esto se debe a que \heroku{} no permite el almacenamiento de archivos en sus servidores, únicamente lo que esta almacenado en el repositorio git persiste en el tiempo. Para lidiar con este problema lo normal es utilizar servicios externos para almacenar las imágenes o cualquier otro fichero subido por los usuarios. Por ejemplo se puede utilizar el servicio Amazon S3. Aunque para nuestros requerimientos el servicio es gratuito (hasta 5 GB de datos), es necesario darse de alta en el mismo lo cual requiere una tarjeta de crédito válida así que no lo usaremos. Aquellos interesados en probarlo por su cuenta pueden encontrar una descripción de como hacerlo en {https://devcenter.heroku.com/articles/s3}.
+
+Para corregir esta parte de la practica se usará el script \ttt{web\_tester.py}, si este no funciona la calificación de este apartado será 0. 
+
+
+%\begin{verbatim}
+%# set session variable
+%request.session['idempresa'] = profile.idempresa
+%
+%#get session variable
+%if 'idempresa' in request.session:
+%    idempresa = request.session['idempresa']
+%else:
+%    idempresa = ....
+%\end{verbatim}
+
+\section{Trabajo a Presentar al finalizar  la Práctica} % Sub-sub-section
+
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\begin{enumerate}
+
+\item Subid a moodle, en un único fichero zip, el proyecto de \django{} conteniendo la aplicación desarrollada en esta práctica llamada \texttt{onlineshop}. En concreto se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign3\_final.zip  master} desde el directorio del proyecto.
+
+\item Debajo del link usado para subir el proyecto hay otro llamado \texttt{Heroku URLS práctica\_3}, conectaros al mismo y escribid la dirección de Heroku donde esté desplegada vuestra aplicación. Esta dirección debe ser \textbf{DISTINTA} a la usada en la práctica anterior.
+
+\item  Aseguraros de que todos los tests  son satisfechos por vuestros código. No es admisible que se modifique el código de los tests más allá de lo comentado en el enunciado.
+
+\item Entrega una versión actualizada de \ttt{web\_tester.py}.
+
+\item Entrega una nueva versión del fichero de test \texttt{tests\_populate.py} de forma que use los datos cargados mediante el fichero \texttt{populate\_onlineshop.py}. 
+
+\end{enumerate}
+\end{framed}
+\end{minipage}\\\\
+
+\section{Criterios de evaluación}
+
+Para aprobar con 5 puntos es necesario satisfacer en su totalidad los siguientes criterios:
+\begin{itemize}
+ \item todos los ficheros necesarios para ejecutar el proyecto se han entregado a tiempo.
+ \item el proyecto se puede ejecutar localmente.
+ \item al ejecutarse el test (\ttt{tests.py}) localmente el número de fallos no es superior a uno.
+ \item el script \texttt{populate\_onlineshop.py} funciona correctamente
+\end{itemize}
+ 
+Nota en el rango 5.0-6.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item La aplicación está desplegada en Heroku (y el URL está accesible en el link denominado Heroko URL practica\_3). Además de estar desplegada la aplicación funciona correctamente en Heroku.
+ \item Al ejecutarse los ficheros de test (\ttt{tests.py} y \ttt{web\_tester.py}) localmente y en Heroku el número de fallos no es superior a uno.
+\end{itemize}
+ 
+Nota en el rango 7.0-7.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item el script \texttt{query\_onlineshop.py} funciona correctamente
+ \item se usan fichero de estilo (css)
+ \end{itemize}
+ 
+Nota en el rango 8.0-8.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad
+ \item La aplicación esta trabajada desde el punto de vista estético
+ \item El código es legible, eficiente, esta bien estructurado y comentado:
+    \begin{itemize}
+        \item  las búsquedas las realiza la base de datos. Esto es, no se cargan todos los elementos de una tabla y se buscan los objetos adecuados en las funciones definidas en \views.
+        \item  los errores se procesan adecuadamente y se devuelven mensajes de error comprensibles
+        \item  El código presenta un estilo consistente y las funciones están comentadas incluyendo su autor. Nota: el autor de una función debe ser único
+        \item se indenta consistentemente sin mezclar espacios y tabuladores
+    \end{itemize}
+\end{itemize}
+
+Nota en el rango 9-10.0 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item Se ha añadido el test solicitado: \texttt{tests\_populate.py}.
+ \item todos los tests se ejecutan correctamente tanto localmente como en Heroku
+\end{itemize}
+
+ Falta entrega parcial o entrega parcial retrasada $\rightarrow$ substraer un punto por cada entrega. 
+ 
+ Entrega final retrasada $\rightarrow$ quitar un punto por día de retraso.
+
+ NOTA: El código usado para corregir esta práctica será el subido a Moodle. En ningún caso se usará el código existente en el repositorio de Bitbucket o Heroku. 
+\end{document}

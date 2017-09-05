@@ -1,0 +1,800 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple Sectioned Essay Template
+% LaTeX Template
+% i
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing essay content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+%\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{caption}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry} % Required to change the page size to A4
+%\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{framed}
+%\usepackage{hyperref}
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+\usepackage{fancyhdr}
+\newcommand{\ti}[1] {\textit{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{{Assignment-4}} 
+\fancyhead[LO]{Computer Systems Project}
+%\fancyhead[RO]{{\leftmark}} 
+\fancyfoot[LE,RO]{{ \thepage }}
+
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\linespread{1.2} % Line spacing
+\lstset{ %
+  language=PYTHON,                % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  %backgroundcolor=\color{grey},      % choose the background color. You must add \usepackage{color}
+  %showspaces=false,               % show spaces adding particular underscores
+  %showstringspaces=false,         % underline spaces within strings
+  %showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  %rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  %tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  %breaklines=true,                % sets automatic line breaking
+  %breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  %commentstyle=\color{dkgreen},       % comment style
+  %stringstyle=\color{mauve},         % string literal style
+  %escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  %morekeywords={*,...}               % if you want to add more keywords to the set
+}
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\newcounter{ejercicioNo}
+
+\newcommand{\herokuurl}[1]{\url{https://pure-bayou-13155.herokuapp.com/#1}}%
+\newcommand{\ttt}[1]{\texttt{#1}}%tt
+\newcommand{\hhh}[1]{\texttt{#1}}%html
+\newcommand{\ppp}[1]{\texttt{#1}}%python
+\newcommand{\views}{\texttt{views.py}}%
+\newcommand{\modelss}{\texttt{models.py}}%
+\newcommand{\settings}{\texttt{settings.py}}%
+\newcommand{\urls}{\texttt{urls.py}}%
+\newcommand{\forms}{\texttt{forms.py}}%
+\newcommand{\tests}{\texttt{tests.py}}%
+\newcommand{\django}{\texttt{Django}}%
+\newcommand{\admin}{\texttt{admin.py}}%
+\newcommand{\database}{\texttt{onlineshop}}%
+\newcommand{\proyecto}{\texttt{onlineshop}}%
+\newcommand{\project}{\texttt{onlineshop}}%
+\newcommand{\aplicacionsh}{\texttt{shop}}%
+\newcommand{\heroku}{\texttt{Heroku}}
+\newcommand{\populatescript}{\texttt{populate\_\proyecto.py}}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Universidad Aut\'{o}noma de Madrid}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Proyecto de Sistemas Informaticos}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Departamento de Informatica}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Computer Science Department}\\[0.5cm] % Minor heading such as course title
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Computer Systems Project\\[0.5cm] Assignment - 4}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft}
+% \large
+%\emph{Author:}\\
+%Roberto  \textsc{Marabini Ruiz} % Your name
+%\end{flushleft}
+%\end{minipage}
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[4cm]
+
+%{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+\vfill % Fill the rest of the page with whitespace
+%\begin{minipage}{0.4\textwidth}
+\begin{flushright}
+ \large
+%\emph{Author:}\\
+Roberto  \textsc{Marabini Ruiz} % Your name
+\end{flushright}
+%\end{minipage}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Include a table of contents
+
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+
+%----------------------------------------------------------------------------------------
+%	OBJETIVOS
+%----------------------------------------------------------------------------------------
+
+%\section {Objetivos}
+
+%Aplicando los conocimientos adquiridos durante el curso implementar la aplicación RatonGato
+
+\section{Introduction}
+\subsection {Goals }
+
+Finish the implementation of the project \project{}. That is, implement the applications that will manage the shopping cart and order processing.
+
+\subsection {Requirements }
+\subsubsection{Shopping Cart}
+
+\begin{itemize}
+    \item The shopping cart allows clients to store TEMPORALLY the items they wish to buy.
+    \item The shopping cart must persist in the session (client's visit).
+    \item We will use Django's session framework to persist the shopping cart.
+    \item The shopping cart will be stored in a plain Python class not in a model.
+    \item It should be possible to add and remove items from the shopping cart.
+\end{itemize}
+
+
+
+\subsubsection{Process Client's Orders}
+\begin{itemize}
+  \item When a shopping cart is checked out the order must be stored in the database
+  \item Orders contains information about the items bought and the customer.
+  \item The module that handles orders must also handle the customer data collection
+  \item Shopping carts contents must be cleared after they are purchased.
+\end{itemize}
+
+
+\subsection{Using Sessions}
+
+HTTP is a stateless protocol -the server is not required to retain information or status about each user for the duration of multiple requests. For complex applications, however, this is a limitation. For example, when maintaining a ``shopping cart'' at some merchandise website, which you gradually fill as you browse through the products that interest you.
+
+``Cookies'' where brought in the 1990s to overcome this problem. A cookie is an arbitrary string sent by the server to the client as part of the HTTP response. The client will then return this cookie back to the server in subsequent requests. The information stored in the cookie allows the client to identify itself back to the server with some state the server has assigned to it.
+
+Django session framework makes using cookies trivial. Here's a simple example that retrieves and sets a session variable:\\
+
+\begin{lstlisting}
+def function1(request,..): # request is an instance 
+                           # of class HttpRequest
+  ...
+  # set session variable
+  request.session['idempresa'] = idempresa
+
+def function2(request,..): 
+  ...
+  #get session variable
+  if 'idempresa' in request.session:
+      idempresa = request.session['idempresa']
+  else:
+      idempresa = ....
+  # NOTE do not write code as:
+  # request.session['idempresa'] += 1
+  # if you want to modify the value of a session, 
+  # assign it to a local variable
+  # modify it and copy it back to the session
+  # idempresa = request.session['idempresa']
+  # idempres += 1
+  # request.session['idempresa'] = idempresa
+\end{lstlisting}
+
+
+\section{First and Second Weeks}
+
+Create a new project  in Heroku and a new repository in Bitbucket, do not reuse the repositories created in the last assignment. We will divide the work to be done into three steps:
+
+\begin{itemize}
+ \item Create a class to handle the shopping cart
+ \item Create a view (method and template) for visualizing the shopping cart
+ \item Create a view (method and template modification) for adding and removing items from the shopping cart.
+\end{itemize}
+
+
+\subsection{Create a View for Visualizing the Shopping Cart}
+First create a new application (\ttt{python manage.py startapp shoppingcart}). Inside this new application create a plain Python class (\ttt{ShoppingCart}) that will be used to store the shopping cart. The shopping cart will be stored as a dictionary (\ttt{self.cart}) where the keys will be product IDs and the values another dictionary with the number of units bought and the price per unit. Therefore, adding a new product requires a code similar to:
+
+\begin{lstlisting}
+ self.cart[str(product_id)] = {'units': 7,
+			       'price': str(product.price)}
+\end{lstlisting}
+After any modification of the shopping cart, \ttt{self.cart}  will be stored as a session variable so it can be accessed from any other method. As you can see in listing~\ref{lst:cart}, the shopping cart is required to be initialized with a request object. Then the current session is copied to self.session = request.session to make it available to the other methods. 
+
+Follow a partial implementation of the \ttt{ShoppingCart} class. Save it in a file called  \ttt{shoppingcart.py} into the directory \ttt{shoppingcart}.
+
+\begin{lstlisting}[caption=template for class \ttt{ShoppingCart},label={lst:cart}]
+
+from decimal import Decimal
+from shop.models import Product
+
+class ShoppingCart(object):
+    cartKey = 'shoppingCart'
+    def __init__(self, request):
+        """
+        Initialize the cart: 
+           if request.session['self.cartKey'] does not exist create one
+           Important: Make a copy of request.session['self.cartKey] 
+                      do not manipulate it directly
+                      request.session is not a proper dictionary and 
+                      direct manipulation  will produce weird results
+        """
+        self.session = request.session
+        cart = self.session.get(self.cartKey)
+        if not cart:
+            # save an empty cart in the session
+            cart = self.session[self.cartKey] = {}
+        self.cart = cart
+
+    def addProduct(self, product, units=1, update_units=False):
+        """
+        Add a product to the cart or update its units.
+        """
+        # dictionary keys as product.id should be strings, 
+        # otherwise they are not serialized properlly
+        product_id = str(product.id)
+        your code goes here
+        # implement two different cases:
+        # new product and update of units
+        self.saveCart()
+
+    def saveCart(self):
+        # update the session cart
+        self.session[self.cartKey] = self.cart
+        # mark the session as "modified" to make sure it is saved
+        # By default, Django only saves to the session database 
+        # when the session has been modified - that is if any of its 
+        # dictionary values have been assigned or deleted
+        # but this will not work for 'units' or 'price' which are values
+        # of a dictionary not a new dictionary
+        self.session.modified = True
+
+    def removeProduct(self, product):
+        """
+        Remove a product from the cart.
+        """
+        your code goes here
+
+    def __iter__(self):
+        """
+        This function allows you to iterate through the shopping cart.
+        shoppingCart = Shoppingcart(request)
+        for i in shoppingCart:
+           ...
+        """
+        product_ids = self.cart.keys()
+        # get the product objects and add them to the cart
+        # products themselves will not be stored in the session variable
+        # so we need to recreate them each time
+        # We can not store the Product in the session variable because
+        # classes with pointers to object are not properlly
+        # serialized
+        products = Product.objects.filter(id__in=product_ids)
+        for product in products:
+            self.cart[str(product.id)]['product'] = product
+
+        for item in self.cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['units']
+            yield item
+
+    def __len__(self):
+        """
+        Count all items in the cart. By default it counts the number of 
+        different products
+        """
+        return your_code_goes_here
+
+    def get_total_price(self):
+        return your_code_goes_here
+
+    def clear(self):
+        # remove cart from session
+        del self.session[self.cartKey]
+        self.session.modified = True
+  \end{lstlisting}
+
+  Complete the class by replacing the sentence ``your\_code\_goes\_here'' by the
+  appropriate code. Follows a detailed description of the methods to be implemented.
+
+\subsubsection{addProduct}
+
+% The add() method takes the following parameters:
+% •	 product : The Product instance to add or update in the cart.
+% •	 units : An optional integer for product units. This defaults to 1 .
+% •	 update_units : This is a boolean that indicates whether the units
+% needs to be updated with the given units ( True ), or the new units
+% has to be added to the existing units ( False ).
+% We use the product id as a key in the cart contents dictionary. We convert the
+% product id into a string because Django uses JSON to serialize session data, and
+% JSON only allows string key names. The product id is the key and the value that we
+% persist is a dictionary with units and price for the product. The product's price
+% is converted from Decimal into string in order to serialize it. Finally, we call the
+% save() method to save the cart in the session.
+The \ttt{addProduct} method takes three parameters: \ttt{product} (\ttt{Product} instance to be added), \ttt{units} (number of units to be added) and \ttt{update\_units} (this is a boolean that indicates whether the current number of units needs to be replaced with \ttt{units} (True), or the number \ttt{units} has to be added to the existing number of units (False)).
+In order to check that the method works, execute the test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartAdd --keepdb}.\\ If the test fails modify your code not the test.
+
+\subsubsection{removeProduct}
+
+The \ttt{removeProduct} method takes a single parameter: \ttt{product} (\ttt{Product} instance to be removed) and removes a product from the shopping cart dictionary. After that it calls the \ttt{save()} method to update the shopping cart in the session.
+
+In order to check that the method works, execute the test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartRemoveProduct --keepdb}
+
+\subsubsection{\_\_len\_\_}
+
+When the \ttt{len()} function is executed on an object, Python calls its \ttt{\_\_len\_\_} method to retrieve its length. Our customized implementation of \ttt{\_\_len\_\_} should return  the  total number of items  in the shopping cart. For example, if the shopping cart contains 6 oranges and 2 pears \ttt{\_\_len\_\_} should return 8.
+ 
+In order to check that the method works, execute the test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartLen --keepdb}
+
+
+\subsubsection{get\_total\_price}
+Return the total cost for the items in the shopping cart.
+
+In order to check that the method works, execute the test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.test\_shoppingCartTotalPrice --keepdb}
+
+\subsection{Create a view (method and template) for visualizing the shopping cart}
+We need a view to display the cart and its items. First we will create a trivial method (into \views) as:
+
+\begin{lstlisting}
+def shoppingcart_list(request):
+    _shoppingcart = ShoppingCart(request)
+    return render(request, 'shoppingcart/list.html',
+                           {'shoppingcart': _shoppingcart})
+\end{lstlisting}
+After that, create a template file (\ttt{shoppingcart/list.html}) which should be similar (from an information  point of view) to the view available at URL \herokuurl{cart/}. Right now do not worry  about the message ``Your cart is empty'' or about the options  ``remove'' and ``update''. In the column labeled ``quantiy'' just show the number of units. 
+
+
+Do not forget to update the \urls{} files as summarized in  table~\ref{tab:urlsshopping} and remember to show the total cost in addition to the cost per product.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|^list/$|  & \verb|views.shoppingcart_list|  & \verb|shoppingcart_list|\\
+\end{tabular}
+\caption{relationship between urls, methods and names}
+\label{tab:urlsshopping}
+\end{table}
+
+In order to check that the method works, execute the test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartList --keepdb}. 
+
+\subsection{Create a View (Method and Template Modification) for Adding and Removing Items from the Shopping Cart}
+We have defined the shopping cart class but right now it is not possible to access it from a browser. We need to create an adequate interface by adding an add (\ttt{shoppingcart\_add}), remove (\ttt{shoppingcart\_remove}) and display (\ttt{shoppingcart\_list}) method in \views.
+
+\subsubsection {Adding Items to the Shopping Cart}
+\paragraph{1} First create a form (\forms{}) into the directory \ttt{shoppingcart}. This form should handle the fields \ttt{units} and \ttt{update\_units}. Define  \ttt{update\_units} as a hidden field with default value \ttt{False}. Follows a code skeleton for \forms{}.
+
+\begin{lstlisting}
+from django import forms
+
+class CartAddProductForm(forms.Form):
+    units = ...
+    update_units = ...
+\end{lstlisting}
+
+\begin{minipage}{\textwidth}
+In order to check the form execute the tests:\\ 
+\ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_blank\_form --keepdb}\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_valid\_form --keepdb}
+\end{minipage}\\
+
+\paragraph{2} The next step is to add a trivial method (\ttt{shoppingcart\_add}) in \views{} that adds products to the shopping cart. The method input is the product id and the desired number of units and the method just calls to \ttt{shoppingcart.addProduct}. Follows a code skeleton for this method:
+
+\begin{lstlisting}
+ def shoppingcart_add(request, product_id):
+    shoppingcart = ShoppingCart(request)
+    # process de form to get units, update_quantity
+    # use product_id to get the product
+    your code goes here
+    shoppingcart.addProduct(product=product,
+                 units=units,
+                 update_quantity=update_units)
+    return redirect('shoppingcart_detail')
+
+\end{lstlisting}
+the method return the list of items stored in the shopping cart.
+
+Do not forget to update the \urls{} files as summarized in  table~\ref{tab:urlsshoppingadd}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^add/(?P<product_id>\d+)/$'|  & \verb|views.shoppingcart_add|  & \verb|shoppingcart_remove|\\
+\end{tabular}
+\caption{relationship between urls, methods and names}
+\label{tab:urlsshoppingadd}
+\end{table}
+
+Now, embed the form into template \url{shop/productdetail.html},
+(see \url{https://pure-bayou-13155.herokuapp.com/85/butterfly-stars-tat/} for an example) and create the line that contains the label ``Add to Cart'',
+
+In order to check that the code needed for adding products works, execute the tests:\\
+\ttt{python database\_cleaner.py; \# clean the database\\
+python manage.py migrate; \# create database tables\\
+python create\_super\_user.py; \# add admin superuser\\
+python  shopping\_web\_tester.py \# execute test}.\\ Do not modify the test file bellow the line that constaisn the sentence: ``DO NOT CHANGE ANYTHING BELLOW THIS POINT''.
+
+Before runnning the test double check the value of the following variables in the file \ttt{shopping\_web\_tester.py}.
+\begin{verbatim}
+  POPULATE      = True # set to True if you  want to populate the database
+  ADDPRODUCT    = True # set to True if you  want to add
+                         # products to the shoppingcart
+  REMOVEPRODUCT = False # set to True if you  want to remove
+                         # products from the shoppingcart
+  CHECKOUT      = False # press checkout botton
+  PLACEORDER    = False # place order. The END ;-)
+\end{verbatim}
+ 
+\subsubsection{Remove Items}
+%\paragraph{3} Finally, 
+We need to add to \views{} the method that removes products from the shopping cart. As in the previous section this is a trivial function, the input is the product id, then the method just calls \ttt{shoppingcart.removeProduct} and redirect the request to \ttt{shopping\_list} that return a http page with a list of all products in the shopping cart.
+
+\begin{lstlisting}
+ def shoppingcart_remove(request, product_id):
+    #your code goes here
+    return redirect('shoppingcart_list')
+\end{lstlisting}
+Add an extra column to the adequate template file, call it ``remove'' and link it to the new method (see URL \url{https://pure-bayou-13155.herokuapp.com/cart/} for details)
+
+Do not forget to update the \urls{} files as summarized in  table~\ref{tab:urlsshoppingremove}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^remove/(?P<product_id>\d+)/$'|  & \verb|views.shoppingcart_remove|  & \verb|shoppingcart_remove|\\
+\end{tabular}
+\caption{relationship between urls, methods and names}
+\label{tab:urlsshoppingremove}
+\end{table}
+
+You may test the new method as described in the previous subsection but this time you must set  \ttt{REMOVEPRODUCT = True}.
+
+\subsubsection{Deploy in Heroku}
+%\paragraph{4} 
+Do not forget to deploy the application in Heroku an execute again \ttt{shopping\_web\_tester.py}. This time you need to modify the value of the variable \ttt{base\_url} so it points to your Heroku web site. Remember, do not use the same project used in assignment 3.
+
+\subsection{Assignment Submission Checklist for the two first weeks} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+
+\begin{itemize} 
+ \item Upload to moodle in a single zip file the project \texttt{onlineshop}. In this project it should be possible to add categories and products and, add and remove products from a shopping cart. It should also be possible to list the shopping cart contents.
+ \item The project should be aesthetically appealing.
+ \item Deploy the project in Heorku and check that it works properly.
+ \item Check that both tests, \ttt{tests.py} and \ttt{shopping\_web\_tester.py} 
+ do not report any failure both locally and in Heroku. Add to your project the modified version of \ttt{shopping\_web\_tester.py} where the first lines may have been modified. Do not modify the \ttt{tests.py} files. Do not modify the file \ttt{shopping\_web\_tester.py} beyond the ``DO NOT CHANGE ANYTHING BELLOW THIS POINT'' line 
+ \item Specifically, you should upload to moodle the  zip file created by running the command \texttt{git archive --format zip --output ../assign4\_first\_second\_week.zip  master}
+in the project directory.
+
+\end{itemize}
+\end{framed}
+\end{minipage}
+\section{Third and Fourth Weeks}
+Two are the main functionalities that remain to be implemented:
+
+\begin{itemize}
+ \item For all pages we still see the message ``Your cart is empty''. When we start buying products and placing them   in the cart, we wish to display instead the total number of items in the cart and the total cost. 
+ \item Order processing has not be implemented. (Clicking the CheckOut button does nothing) 
+\end{itemize}
+
+\subsection{Update the line ``Your cart is empty''...}
+Keep updated the line ``Your cart is empty'' is  challenge since it does appear in 
+all pages. Therefore, all templates need access to the  \ttt{ShoppingCart} instance. The problem may be solved used a tool provided by Django framework called ``context processor''. A context processor is a Python function that takes the request object as an
+argument and returns a dictionary that gets added to the request context (that is, to the dictionary passed to the templates). Django execute all defined context processors before accessing any template.
+
+We will break the context processor creation in three steps:
+
+\begin{itemize}
+ \item Create a new method \ttt{addShoppingCart} that returns a dictionary with the values we want to pass to all templates.
+ \item Inform Django that this new method is a context processor.
+ \item Update \hhh{base.html} so the the line ``Your cart is empty'' is properly updated.
+\end{itemize}
+
+\subsubsection{Crear a new method called \ttt{AddShoppingCart}...}
+
+In the directory \ttt{shoppingcart} create a new file (\ttt{addShoppingCart.py}) add the following code there:
+
+\begin{lstlisting}
+from shoppingcart import ShoppingCart
+
+def addShoppingCart(request):
+    return {'shoppingcart': ShoppingCart(request)}
+
+\end{lstlisting}
+In the above code, a shopping cart is instanciated using the request object and it is made available for the templates as a variable named \ttt{'shoppingcart'} .
+
+
+\subsubsection{Inform Django that this new method is a context processor}
+
+A context processor list called \ttt{TEMPLATES} is defined in \settings{}. Modify it
+so it looks like:
+
+\begin{lstlisting}
+ TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': DIRS,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'shoppingcart.addShoppingCart.addShoppingCart',# ADD THIS LINE
+            ],
+        },
+    },
+]
+\end{lstlisting}
+The new context processor will now be executed every time a template is rendered.
+
+\subsubsection{Update \hhh{base.html}}
+Now edit the file \hhh{base.html}, in particular the following block should be updated.
+
+\begin{lstlisting}
+     <div id="subheader">
+         <div class="cart">
+                    Your cart is empty.
+        </div>
+    </div>
+\end{lstlisting}
+Modify the html code so that  ``this cart is empty'' is shown if the cart is empty.
+If not, the number of selected items plus the total price should be displayed. The line should be linked to \ttt{shoppingcart\_list}, so when clicked we get a page with a list of the products stored in the shopping cart. In order to achieve this resutl you may use,
+in \hhh{base.html}, the command \ttt{length}. For example, \ttt{\{\{\% if shoppingcart|length > 0 \%\}\}} is true if the variable  \ttt{shoppingcart} is greater than zero.
+
+\subsection{Implement Order Processing}
+We should be able to process orders. That is, when a shopping cart is checked out, the application must save the order into the database. Orders contain information about customers and the products they are buying. We will broke the implementation of this requirement in several steps:
+% Create a new application for managing customer orders using the following command:
+% python manage.py startapp orders
+
+
+\begin{itemize}
+ \item Create a new application called \ttt{placeorder} (\ttt{python manage.py startapp placeorder})
+ \item Create two new classes in \modelss{} and add them to Django's administration framework (\admin)
+ \item Create a form to get customer's data (\forms)
+ \item Create a new template that shows the form (\hhh{createOrder.html})
+ \item Create a method that saves the \ttt{shoppingcart} and customer information into the database (\views)
+ \item Create a second template that informs customers that their orders has been processed (\hhh{confirmOrder.html}).
+ \item Clean \ttt{shoppingCart}.
+
+\end{itemize}
+
+\subsubsection{Create two new classes in \modelss{}... }
+After creating the new application we need to add two auxiliary classes to \modelss{}. These classes will be used to store orders. %You will see that there is some overlapping between the information stored in the class \ttt{ShoppingCart} and the new classes. Therefore, the 
+
+%hubieramos podido usarlas desde el principio. Hay dos razones por las cuales nuestra aproximación es mejor. La primera es que reduce el acceso a la base de datos y la segunda es que la clases que se guardan como variables de sesión deben ser sencillas y no pueden tener claves extranjeras (punteros a otras clases).
+
+Follows a relational scheme for the new classes:
+
+\begin{verbatim}
+  
+  Order(firstName, familyName, email, address, zip, created, updated, paid)
+    firstName    => String, not null
+    familyName   => String, not null
+    email        => String, not null % use Django EmailField
+    address      => String, not null 
+    zip          => String, postal code, not null
+    city         => String, postal code, not null
+    created      => TimeStamp, default = now % use Django DateTimeField
+    updated      => TimeStamp, default = now % use Django DateTimeField
+    paid         => Boolean, default = False
+  OrderLine(Order,Product, units, price)
+    order        => Order, not null, Foreign Key (Order) - ***related_name = 
+                                                              orderLines***
+    product      => Product, not null, Foreign Key (Product)
+                             *** related_name = productLines ***
+    units        => int, not null; units bought
+    pricePerUnit => real number,  % use Django DecimalField 
+      
+\end{verbatim}
+implement the schema in the \modelss{} file. Add to the created classes a function called \ttt{getTotalCost()} (in \ttt{Order}) and \ttt{getProductCost} (in \ttt{OrderLine}) that returns the total cost per order and the cost per product respectively.
+After creating the models do not forget to update \settings{},  regenerate the database and modify \admin{} so that the new models can be accessed from the admin interface. Define the corresponding \ttt{\_\_str\_\_(self)} in \modelss.
+
+\subsubsection{Create a form to get customer's data}
+
+Create a form based on class \ttt{Order}. Ask for: \ttt{firstName}, \ttt{familyName}, \ttt{email}, \ttt{address}, \ttt{zip} and \ttt{city}. Call the class that defines the form  \ttt{OrderCreateForm}. Remember that forms are created in \forms.
+
+In moodle you may find a \tests{} file for the application \ttt{placeorder}. Using it you may verify your code. The relevant tests are:
+
+\begin{verbatim}
+python manage.py test placeorder.tests.placeOrderTest.test_blank_form 
+python manage.py test placeorder.tests.placeOrderTest.test_valid_form 
+python manage.py test placeorder.tests.placeOrderTest.test_Order
+python manage.py test placeorder.tests.placeOrderTest.test_OrderLine
+
+\end{verbatim}
+
+
+\subsubsection{Create a Template that Shows the Form}
+In the directory \ttt{templates} create a subdirectory \ttt{placeorder} and place there a new template called \hhh{createOrder.html}. From a functional point of view the template should be equivalent to the one used to create the  URL \url{https://pure-bayou-13155.herokuapp.com/orders/create/}. This template will be used by a new method that we will define in \views{}. The method will be executed after clicking the \ttt{Checkout} button in \url{https://pure-bayou-13155.herokuapp.com/cart/}. The method name will be \ttt{createOrder}. 
+
+Create both the template and the calling method and do not forget to update the \urls{} files as summarized in  table~\ref{tab:urlsplaceorder}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^create_order/$'|  & \verb|views.createOrder|  & \verb|create_order|\\
+\end{tabular}
+\caption{relationship between urls, methods and names}
+\label{tab:urlsplaceorder}
+\end{table}
+
+\subsubsection{Create a method that saves the \ttt{shoppingcart} and customer information into the database}
+Now we need to store in the database all the information related with the order. This information is split between a \ttt{shoppingCart} instance and a  \ttt{OrderCreateForm} instance. We will need a new method (\views{}) that creates and stores an instance of  \ttt{Order} and as many instance of \ttt{OrderLine} as needed (one per product) and, fills them. Call this method \ttt{confirmOrder}.
+
+Do not forget to update the \urls{} files as summarized in  table~\ref{tab:urlsconfirmorder}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^confirm_order/$'|  & \verb|views.confirmOrder|  & \verb|confirm\_order|\\
+\end{tabular}
+\caption{relationship between urls, methods and names}
+\label{tab:urlsconfirmorder}
+\end{table}
+
+\subsubsection{Create a second template that informs customers that their orders have been processed (\hhh{confirmOrder.html})}
+The method developed in the previous section (\ttt{confirmOrder}) must return a  
+template (\hhh{confirmOrder.html}) that informs users that the order has been processed.
+This template should also show the order id. Please, implement it. (You may see an example in URL \url{https://pure-bayou-13155.herokuapp.com/orders/create/}.)
+
+\subsubsection{Clean  \ttt{shoppingCart}}
+Finally,  after storing the needed information into the database do not forget to clean the session variable \ttt{shoppingCart} so that the shopping cart is empty. You already have a  \ttt{clear} method defined in the class \ttt{shoppingCart}. Use it.
+
+Before runnning the last test double check the value of the following variables in the file \ttt{shopping\_web\_tester.py}.
+
+\begin{verbatim}
+    POPULATE      = True # set to True if you  want to populate the database
+    ADDPRODUCT    = True # set to True if you  want to add
+                         # products to the shoppingcart
+    REMOVEPRODUCT = True # set to True if you  want to remove
+                         # products from the shoppingcart
+    CHECKOUT      = True # press checkout botton
+    PLACEORDER    = True # place order. The END ;-)
+\end{verbatim}
+
+Do not forget to deploy the project in Heroku and execute the \ttt{web\_shopping\_tester.py}
+test with the variable \ttt{base\_url} pointing towards your \heroku URL.
+
+\section{The very Last Test}
+If you want to get top grades there is a last job to do. Create a file similar to  \ttt{shoppingcart/tests.py} (call it \ttt{shoppingcart/tests\_10.py}). This test file should check: (1)  after adding a few products to the shopping cart there is a session variable called ``shoppingCart'' and (2) after executing the method \ttt{clear} of the class \ttt{ShoppingCart} thesession variable has disappeared.
+
+
+\section{Assignment Submission Checklist} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+\begin{itemize}
+\item Upload to moodle in a single zip file the project \texttt{onlineshop}.
+Specifically, you should upload to moodle the  zip file created by running the command \texttt{git archive --format zip --output ../assign4\_final.zip  master}
+in the project directory.
+
+\item The project should satisfy all the requirements described in assignments 3 and 4. 
+
+\item The project should be aesthetically appealing.
+
+\item Bellow the link used to upload the project there is another called \texttt{Heroku URLS assignment\_4}, connect to it and write down the Heroku's address in which your application was been deployed.
+
+\item Double check that all tests are satisfied both locally and in Heroku. Remember that you should NOT modify the test files except the first lines of \ttt{shopping\_web\_tester.py}. Upload to Moodle the \ttt{shopping\_web\_tester.py} modified version with the rest of the project. If you implement \ttt{shoppingcart/tests\_10.py}, do not forget to upload it.
+
+\item Upload as part of the project the images used to populate the project. 
+
+\end{itemize}
+
+
+\end{framed}
+\end{minipage}
+
+\section{Grading Criteria}
+
+5 points if the following criteria are met:
+\begin{itemize}
+ \item All files needed to execute the project and the tests have been uploaded on time.
+ \item The application can be deployed locally and it is possible to select items for their purchase and remove them. That is, it is possible: to add categories and products, select and remove products from the shopping cart and, visualize the shopping cart).
+  \item When executed locally the relevant part of files \ttt{tests.py} and \ttt{shopping\_web\_testter.py}, the number of tests  non passed is no greater than 1.
+\end{itemize}
+
+[5.0-5.9] points if the following criteria are met
+ \begin{itemize}
+ \item The criteria listed in the previous paragraphs are fully satisfied.
+ \item The URL in which the project has been deployed is Heroku is available in Moodle (link labeled  Heruko URL assignment\_4).
+ \item In Heroku, it is possible to select items for their purchase and remove them. That is, it is possible: to add categories and products, select and remove products from the shopping cart and, visualize the shopping cart).
+  \item When executed in Heroku the relevant part of files \ttt{tests.py} and \ttt{shopping\_web\_testter.py}, the number of tests  non passed is no greater than 1.
+  \item The assigned grade to this section will be zero if it is not possible to execute the test \ttt{shopping\_web\_testter.py}  for reasons as: wrong admin password or not properly updated test file first lines. 
+\end{itemize}
+
+[6.0-6.9] points if the following criteria are met
+ \begin{itemize}
+ \item The criteria listed in the previous paragraphs are fully satisfied.
+ \item The line ``Your cart is empty'' is handled properly. That is, it is shown the number of acquired product and the total cost and, the line is linked to the page that shows a list containing the products stored in the shopping cart. 
+ \end{itemize}
+ 
+[7.0-7.9] points if the following criteria are met
+ \begin{itemize}
+ \item The criteria listed in the previous paragraphs are fully satisfied.
+ \item Checkout has been implemented. That is, (1) orders are stored in the database, (2) after placing an order the user is informed of the order id and (3) the shopping cart is clear.
+ \end{itemize}
+ 
+[8.0-8.9] points if the following criteria are met
+ \begin{itemize}
+ \item The criteria listed in the previous paragraphs are fully satisfied.
+ \item All tests are satisfied
+ \item The application is robust. That is, it is able to cope with errors during execution and cope with erroneous input.
+ \item In the application, aesthetic has been taken carefully into account.
+ \item Code is readable, efficient, well-structured and commented:
+    \begin{itemize}
+        \item Queries are made by the database. That is, the functions implemented in views.py do not retrieve all the elements of a table and then search the returned list.
+        \item  Errors are properly handled and meaningful error messages are returned.
+        \item  The code is properly commented. In particular functions are commented including the author. Note: the author of a function is unique.
+        \item Indentation is consistent (e.g. spaces and tabs are not mixed)
+    \end{itemize}
+ 
+\end{itemize}
+
+[9.0-10] points if the following criteria are met
+ \begin{itemize}
+ \item The criteria listed in the previous paragraphs are fully satisfied.
+ \item test \ttt{shoppingcart/views\_10.py} has been implemented
+ \end{itemize}
+
+Late or missing upload of the material implemented during the first 2 weeks decreases the final mark by one point.
+
+Each day of delay in the upload of the final assignment decreases the marks one point per day
+
+NOTE: The code used to grade the assignment is the one uploaded to Moodle. Under no circumstance we will use the code submitted to Bitbucket or Heroku.
+
+
+\end{document}
+% manage user that forgot username and password

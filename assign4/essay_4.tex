@@ -1,0 +1,845 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple Sectioned Essay Template
+% LaTeX Template
+% i
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing essay content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{caption}
+\usepackage[dvips]{graphicx}
+\usepackage{geometry} % Required to change the page size to A4
+%\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{framed}
+%\usepackage{hyperref}
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\usepackage{graphicx} % Required for including pictures
+
+\usepackage{float} % Allows putting an [H] in \begin{figure} to specify the exact location of the figure
+\usepackage{wrapfig} % Allows in-line images such as the example fish picture
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{{Práctica-4}} 
+\fancyhead[LO]{Proyecto de Sistemas Informáticos}
+%\fancyhead[RO]{{\leftmark}} 
+\fancyfoot[LE,RO]{{ \thepage }}
+
+%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\linespread{1.2} % Line spacing
+\lstset{ %
+  language=PYTHON,                % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  %numbers=left,                   % where to put the line-numbers
+  %numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  %stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  %numbersep=5pt,                  % how far the line-numbers are from the code
+  %backgroundcolor=\color{grey},      % choose the background color. You must add \usepackage{color}
+  %showspaces=false,               % show spaces adding particular underscores
+  %showstringspaces=false,         % underline spaces within strings
+  %showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  %rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  %tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  %breaklines=true,                % sets automatic line breaking
+  %breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  %commentstyle=\color{dkgreen},       % comment style
+  %stringstyle=\color{mauve},         % string literal style
+  %escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  %morekeywords={*,...}               % if you want to add more keywords to the set
+}
+%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+
+\graphicspath{{./Pictures/}} % Specifies the directory where pictures are stored
+\newcounter{ejercicioNo}
+
+\newcommand{\herokuurl}[1]{\url{https://pure-bayou-13155.herokuapp.com/#1}}%
+\newcommand{\ttt}[1]{\texttt{#1}}%tt
+\newcommand{\hhh}[1]{\texttt{#1}}%html
+\newcommand{\ppp}[1]{\texttt{#1}}%python
+\newcommand{\views}{\texttt{views.py}}%
+\newcommand{\modelss}{\texttt{models.py}}%
+\newcommand{\settings}{\texttt{settings.py}}%
+\newcommand{\forms}{\texttt{forms.py}}%
+\newcommand{\urls}{\texttt{urls.py}}%
+\newcommand{\tests}{\texttt{tests.py}}%
+\newcommand{\django}{\texttt{Django}}%
+\newcommand{\admin}{\texttt{admin.py}}%
+\newcommand{\database}{\texttt{onlineshop}}%
+\newcommand{\project}{\texttt{onlineshop}}%
+\newcommand{\aplicacionsh}{\texttt{shop}}%
+\newcommand{\heroku}{\texttt{Heroku}}
+\newcommand{\populatescript}{\texttt{populate\_\proyecto.py}}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Universidad Aut\'{o}noma de Madrid}\\[1.5cm] % Name of your university/college
+%\textsc{\Large Proyecto de Sistemas Informaticos}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Departamento de Informatica}\\[0.5cm] % Minor heading such as course title
+\textsc{\Large Departamento de Inform\'{a}tica}\\[0.5cm] % Minor heading such as course title
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Proyecto de Sistemas Inform\'{a}ticos\\[0.5cm] Pr\'{a}ctica - 4}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushleft}
+% \large
+%\emph{Author:}\\
+%Roberto  \textsc{Marabini Ruiz} % Your name
+%\end{flushleft}
+%\end{minipage}
+
+%\begin{minipage}{0.4\textwidth}
+%\begin{flushright} \large
+%\emph{Supervisor:} \\
+%Dr. James \textsc{Smith} % Supervisor's Name
+%\end{flushright}
+%\end{minipage}\\[4cm]
+
+%{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+\vfill % Fill the rest of the page with whitespace
+%\begin{minipage}{0.4\textwidth}
+\begin{flushright}
+ \large
+%\emph{Author:}\\
+Roberto  \textsc{Marabini Ruiz} % Your name
+\end{flushright}
+%\end{minipage}
+
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Include a table of contents
+
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+
+%----------------------------------------------------------------------------------------
+%	OBJETIVOS
+%----------------------------------------------------------------------------------------
+
+%\section {Objetivos}
+
+%Aplicando los conocimientos adquiridos durante el curso implementar la aplicación RatonGato
+
+\section {Introducción}
+
+\subsection{Objetivos}
+En esta práctica terminaremos de construir el proyecto \project{} implementando las aplicaciones que se encargarán de manejar el ``shopping cart'' (o carro de la compra) y la realización de pedidos. 
+
+\subsection{Requerimientos}
+\subsubsection{Carro de la Compra}
+\begin{itemize}
+%A shopping cart allows
+% users to select the products they want and store them temporarily while they browse
+% the site, until they eventually place an order. The cart has to be persisted in the
+% session so that the cart items are kept during the user's visit.
+
+%We will use Django's session framework to persist the cart. The cart will be kept in
+% the session until it finishes or the user checks out of the cart. We will also need
+% to build additional Django models for the cart and its items.
+
+  \item El  carro de la compra debe permitir a los usuarios almacenar productos de forma TEMPORAL mientras navegan a través de las distintas categorías.
+  \item El carro de la compra debe persistir a través de una sesión (visita a la tienda de un usuario).
+  \item Se usarán variables de sesión para persistir el carro hasta que el usuario realice la compra.
+  \item El carro de la compra se almacenará en una clase Python normal, no se creará un modelo para misma puesto que no se desea almacenar en la base de datos de forma permanente.
+  \item Debe ser posible añadir y borrar productos del carro de la compra.
+\end{itemize}
+
+
+\subsubsection{Realización de Pedidos}
+\begin{itemize}
+%When a shopping cart is checked out, you need to save an order into the database.
+% Orders will contain information about customers and the products they are buying.
+
+% 1 We present users an order form to fill in their data.
+
+% 3.	 We clear all the cart contents and redirect users to a success page.
+
+  \item Cuando se realice el pedido este debe almacenarse en la base de datos.
+  \item El pedido contendrá información relativa a los productos adquiridos y al usuario que los adquiere.
+  \item Es responsabilidad del modulo pedido crear el formulario que los usuarios usarán para almacenar sus datos.
+  \item Una vez realizada la compra el carro de la compra debe vaciarse.
+\end{itemize}
+
+
+\subsection{Variables de Sesión}
+
+En principio un servidor web no almacena ninguna información sobre las peticiones que recibe.
+Así pues no es capaz de diferenciar entre las peticiones realizadas por un mismo usuario frente a peticiones cursadas por diferentes usuarios. Los desarrolladores rápidamente comprendieron que esta carencia de ``estados'' es un problema para la implementación de
+servidores web no triviales. Como respuesta a esta carencia nacieron las ``cookies''. Una ``cookie'' es una pequeña cantidad de información que el servidor solicita al navegador que almacene. Cada vez que el cliente web solicita una página del servidor, se le envía de vuelta la ``cookie'' que puede ser usada para identificarse ante el servidor.
+
+Las ``sesiones'' de Django son un entorno que  permite almacenar y recuperar datos  almacenados en las cookies pero abstrayendo todo el problema del envío, recepción y gestión de las mismas. Por defecto, los objetos HttpRequest --el primer argumento de casi todas las funciones que se encuentran en el fichero \views-- tendrán un atributo llamado \textit{session}, que se comporta de forma muy similar a un diccionario. A continuación se muestra el uso de las variables de sesión mediante un ejemplo:
+
+\begin{lstlisting}
+def function1(request,..): # request es una instancia 
+                         # de la clase HttpRequest
+  ...
+  # set session variable
+  request.session['idempresa'] = idempresa
+
+
+def function2(request,..): 
+  ...
+  #get session variable
+  if 'idempresa' in request.session:
+      idempresa = request.session['idempresa']
+  else:
+      idempresa = ....
+  # NOTE do not write code as:
+  # request.session['idempresa'] += 1
+  # if you want to modify the value of a session, 
+  # assign it to a local variable
+  # modify it and copy it back to the session
+  # idempresa = request.session['idempresa']
+  # idempres += 1
+  # request.session['idempresa'] = idempresa
+\end{lstlisting}
+
+
+\section{Trabajo a Desarrollar durante la Primera y Segunda Semanas de la práctica}
+Antes de nada crea un nuevo proyecto tanto en Heroku como en Bitbucket y usadlos para desplegar y almacenar el código relacionado con esta práctica. No reutilicéis los repositorios usados en la práctica 3.
+
+Estas 2 semanas de trabajo las dividiremos en varias etapas
+
+\begin{itemize}
+ \item Crear una clase donde almacenar el carro de la compra.
+ \item Crear el método y la template que usaremos para visualizar el carro de la compra.
+ \item Crear los métodos que permitan añadir/quitar productos del carro de la compra  y modificar las templates existentes para poder añadir/quitar productos desde las mismas.
+\end{itemize}
+
+\subsection{Crear una Clase donde Almacenar el Carro de la Compra}
+El primer paso a realizar sería crear una nueva aplicación (\ttt{python manage.py startapp shoppingcart}) y en ella crearemos una clase en Python (llamada \ttt{ShoppingCart}) que usaremos para almacenar el carro de la compra. El carro de la compra se almacenará como un diccionario donde las claves serán los Ids de los productos productos almacenados  y cuyo valor será otro diccionario con el número de unidades adquiridas y el precio por unidad. Así pues añadir un producto requiere una linea de código similar a:
+
+\begin{lstlisting}
+ self.cart[str(product_id)] = {'units': 7,
+			       'price': str(product.price)}
+\end{lstlisting}
+\ttt{self.cart}  se almacenará como una variable de sesión que podrá ser consultada desde cualquier método. De forma arbitraria elegimos la clave ``shoppingCart'' para almacenar esta variable en el diccionario de la sesión. Nótese que product\_id se almacena como una cadena y no como un número,
+por diseño las claves de los diccionarios deben ser cadenas o de lo contrario no se seriabilizan correctamente y por tanto dan problemas a la hora de almacenarlas como variables de sesión.
+
+A continuación se adjunta parte del código necesario para crear la aplicación. Guardadlo en un fichero llamado \ttt{shoppingcart.py} dentro del directorio \ttt{shoppingcart}.
+
+\begin{lstlisting}
+from decimal import Decimal
+from shop.models import Product
+
+class ShoppingCart(object):
+    cartKey = 'shoppingCart'
+    def __init__(self, request):
+        """
+        Initialize the cart: 
+           if request.session['self.cartKey'] does not exist create one
+           Important: Make a copy of request.session['self.cartKey] 
+                      do not manipulate it directly
+                      request.session is not a proper dictionary and 
+                      direct manipulation  will produce weird results
+        """
+        self.session = request.session
+        cart = self.session.get(self.cartKey)
+        if not cart:
+            # save an empty cart in the session
+            cart = self.session[self.cartKey] = {}
+        self.cart = cart
+
+    def addProduct(self, product, units=1, update_units=False):
+        """
+        Add a product to the cart or update its units.
+        """
+        # dictionary keys as product.id should be strings, 
+        # otherwise they are not serialized properlly
+        product_id = str(product.id)
+        your code goes here
+        # implement two different cases:
+        # new product and update of units
+        self.saveCart()
+
+    def saveCart(self):
+        # update the session cart
+        self.session[self.cartKey] = self.cart
+        # mark the session as "modified" to make sure it is saved
+        # By default, Django only saves to the session database 
+        # when the session has been modified - that is if any of its 
+        # dictionary values have been assigned or deleted
+        # but this will not work for 'units' or 'price' which are values
+        # of a dictionary not a new dictionary
+        self.session.modified = True
+
+    def removeProduct(self, product):
+        """
+        Remove a product from the cart.
+        """
+        your code goes here
+
+    def __iter__(self):
+        """
+        This function allows you to iterate through the shopping cart
+        shoppingCart = Shoppingcart(request)
+        for i in shoppingCart:
+        """
+        product_ids = self.cart.keys()
+        # get the product objects and add them to the cart
+        # products themselves will not be stored in the session variable
+        # so we need to recreate them each time
+        # We can not store the Product in the session variable because
+        # classes with pointers to object are not properlly
+        # serialized
+        products = Product.objects.filter(id__in=product_ids)
+        for product in products:
+            self.cart[str(product.id)]['product'] = product
+
+        for item in self.cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['units']
+            yield item
+
+    def __len__(self):
+        """
+        Count all items in the cart. By default it counts the number of 
+        different products
+        """
+        return your_code_goes_here
+
+    def get_total_price(self):
+        return your_code_goes_here
+
+    def clear(self):
+        # remove cart from session
+        del self.session[self.cartKey]
+        self.session.modified = True
+
+  \end{lstlisting}
+
+Acabad de implementar los métodos que contienen la frase ``your\_code\_goes\_here''.
+ A continuación se describen en detalle los métodos a implementar
+
+\subsubsection{addProduct}
+
+% The add() method takes the following parameters:
+% •	 product : The Product instance to add or update in the cart.
+% •	 units : An optional integer for product units. This defaults to 1 .
+% •	 update_units : This is a boolean that indicates whether the units
+% needs to be updated with the given units ( True ), or the new units
+% has to be added to the existing units ( False ).
+% We use the product id as a key in the cart contents dictionary. We convert the
+% product id into a string because Django uses JSON to serialize session data, and
+% JSON only allows string key names. The product id is the key and the value that we
+% persist is a dictionary with units and price for the product. The product's price
+% is converted from Decimal into string in order to serialize it. Finally, we call the
+% save() method to save the cart in the session.
+
+El método \ttt{addProduct} añade \ttt{units} unidades del producto \ttt{product}
+al carro de la compra. El método recibe tres argumentos: \ttt{product} (objeto de tipo Product que será añadido), \ttt{units} (entero que especifica el número de unidades que se desea comprar) y \ttt{update\_units} (booleano que indica si la cantidad de unidades del producto deben ser sobrescrita con el valor de \ttt{units} -\ttt{update\_units}=True- o \ttt{units} debe añadirse al número de unidades ya existente -\ttt{update\_units}=False-).
+
+Este método puede verificarse ejecutando el test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartAdd --keepdb}. Como de costumbre
+si vuestro proyecto no satisface el test modificar el proyecto, no modifiquéis el test.
+
+\subsubsection{removeProduct}
+%The remove() method removes a given product from the cart dictionary and calls
+%the save() method to update the cart in the session.
+
+El método \ttt{removeProduct} elimina un producto del carro y llama a \ttt{saveCart}
+para actualizar el valor del carro de compra en la variable de sesión,
+
+Este método puede verificarse ejecutando el test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartRemoveProduct --keepdb}
+
+\subsubsection{\_\_len\_\_}
+
+%We also need a way to return the number of total items in the cart. When the len()
+% function is executed on an object, Python calls its __len__() method to retrieve
+% its length. We are going to define a custom __len__() method to return the total
+% number of items stored in the cart.
+
+Esta función devuelve el número total de objetos existentes en el carro. Python define esta función para un diccionario pero, en nuestro caso, devolvería el numero de productos diferentes en lugar del numero total de productos. Por ejemplo, si el carro contiene 6 naranjas y 2 peras, el método de Python devuelve 2 mientras que el que se solicita debe devolver 8.
+
+Este método puede verificarse ejecutando el test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartLen --keepdb}
+
+
+\subsubsection{get\_total\_price}
+Este método debe devolver la cantidad a pagar y puede ser verificado ejecutando el test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.test\_shoppingCartTotalPrice --keepdb}
+
+\subsection{Crear el Método y la ``Template'' que Usaremos para Visualizar el Carro de la Compra}
+%Finally, we need a view to display the cart and its items. Add the following view
+% to the views.py file:
+
+Necesitamos ser capaces de mostrar el carro de la compra y su contenido. Para ello se puede usar un método (\views) como el siguiente
+
+\begin{lstlisting}
+def shoppingcart_list(request):
+    _shoppingcart = ShoppingCart(request)
+    return render(request, 'shoppingcart/list.html',
+                           {'shoppingcart': _shoppingcart})
+\end{lstlisting}
+queda en vuestras manos crear la template ``shoppingcart/list.html'' la cual debe mostrar una información equivalente a la que podéis ver en el URL \herokuurl{cart/}. Por el momento no os preocupéis de las opciones ``remove'' y ``update'', ni de modificar el mensaje ``Your cart is empty''. Igualmente en la columna ``quantity'' poner únicamente el número de unidades sin necesidad de mostrar el menú desplegable. No olvidéis actualizar los ficheros \urls{} como se resume en la tabla~\ref{tab:urlsshopping} y recordad que la template debe mostrar el coste total de los productos además del coste por producto.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|^list/$|  & \verb|views.shoppingcart_list|  & \verb|shoppingcart_list|\\
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas (names)}
+\label{tab:urlsshopping}
+\end{table}
+
+Este método puede verificarse ejecutando el test:\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_shoppingCartList --keepdb}. 
+
+\subsection{Crear los Métodos que Permiten Añadir/Quitar Productos...}
+
+% Now that we have a Cart class to manage the cart, we need to create the views
+% to add, update, or remove items from it. We need to create the following views:
+% •	 A view to add or update items in a cart, which can handle current and new
+% quantities
+% •	 A view to remove items from the cart
+% •	 A view to display cart items and totals
+
+Ahora que ya tenemos una clase para gestionar el carro de la compra vamos 
+a crear métodos en el fichero \views{} para añadir (\ttt{shoppingcart\_add}) y borrar productos (\ttt{shoppingcart\_remove}) así como 
+para mostrar el contenido del carro (\ttt{shoppingcart\_list}).
+
+\subsubsection {Añadir Productos al Carro de la Compra}
+
+\paragraph{1} El primer paso sería crear un formulario (\forms) en el directorio \ttt{shoppingcart} con los campos \ttt{units} y \ttt{update\_units}. Define  \ttt{update\_units} como un campo oculto con valor \ttt{False} por defecto. A continuación adjuntamos un esqueleto del fichero \forms.
+
+\begin{lstlisting}
+from django import forms
+
+class CartAddProductForm(forms.Form):
+    units = ...
+    update_units = ...
+\end{lstlisting}
+
+\begin{minipage}{\textwidth}
+Este formulario puede verificarse ejecutando los tests:\\ 
+\ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_blank\_form --keepdb}\\ \ttt{python manage.py test shoppingcart.tests.shoppingCartTest.\\test\_valid\_form --keepdb}
+\end{minipage}\\
+
+\paragraph{2} El segundo paso sería crear en \views{} la función para añadir productos cuyo único cometido es recibir el identificador de producto y el número de unidades, y le pasa esta información al método \ttt{shoppingcart.addProduct}. A continuación adjuntamos un esqueleto de la función\\
+
+\begin{lstlisting}
+ def shoppingcart_add(request, product_id):
+    shoppingcart = ShoppingCart(request)
+    # your code goes here
+    # process de form to get units, update_quantity
+    # use product_id to get the product
+    shoppingcart.addProduct(product=product,
+                 units=units,
+                 update_quantity=update_units)
+    return redirect('shoppingcart_detail')
+
+\end{lstlisting}
+como veis la función devuelve un listado del carro de la compra
+
+No olvidéis actualizar los ficheros \urls{} como se resume en la tabla~\ref{tab:urlsshoppingadd}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^add/(?P<product_id>\d+)/$'|  & \verb|views.shoppingcart_add|  & \verb|shoppingcart_remove|\\
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas (names) }
+\label{tab:urlsshoppingadd}
+\end{table}
+Incrusta el formulario en la template \url{shop/productdetail.html},
+(\url{https://pure-bayou-13155.herokuapp.com/85/butterfly-stars-tat/}) creando la linea``Add to Cart'' que permite añadir el producto al carro de la compra. Nótese que todavía no nos hemos preocupado de  modificar la frase ``Your cart in empty'', por ahora ignoraremos ese detalle.
+
+El funcionamiento del código involucrado en añadir un producto puede  verificarse ejecutando el test:\\
+\ttt{python database\_cleaner.py; \# borra TODO el contenido de la base de datos\\
+python manage.py migrate; \# recrea las tablas\\
+python create\_super\_user.py; \# crea el superuruario de admin\\
+python  shopping\_web\_tester.py \# ejecuta el test}.\\ Como de costumbre no modifiquéis el código del test por debajo de la linea cuyo contenido es ``DO NOT CHANGE ANYTHING BELLOW THIS POINT''.
+
+
+ Antes de ejecutarlo necesitareis ajustar alguno de los valores definidos en las primeras líneas del script \ttt{shopping\_web\_tester.py}. En particular, comprueba que el valor de las siguientes variables:
+\begin{verbatim}
+  POPULATE      = True # set to True if you  want to populate the database
+  ADDPRODUCT    = True # set to True if you  want to add
+                         # products to the shoppingcart
+  REMOVEPRODUCT = False # set to True if you  want to remove
+                         # products from the shoppingcart
+  CHECKOUT      = False # press checkout botton
+  PLACEORDER    = False # place order. The END ;-)
+\end{verbatim}
+ 
+\subsubsection {Quitar Productos}
+
+%\paragraph{3} 
+Debemos crear en \views{} la función necesaria para quitar productos del carro de la compra, al igual que en el caso anterior su único cometido es recibir el identificador de producto y  pasar esta información al método \ttt{shoppingcart.removeProduct}. A continuación adjuntamos un esqueleto de la función
+
+\begin{lstlisting}
+ def shoppingcart_remove(request, product_id):
+    #your code goes here
+    return redirect('shoppingcart_list')
+\end{lstlisting}
+como veis la función devuelve un listado del carro de la compra. Añadid una columna extra llamada ``remove'' en el template correspondiente tal y como se muestra en el URL \url{https://pure-bayou-13155.herokuapp.com/cart/} y linca su contenido al método recién creado.
+
+No olvidéis actualizar los ficheros \urls{} como se resume en la tabla~\ref{tab:urlsshoppingremove}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^remove/(?P<product_id>\d+)/$'|  & \verb|views.shoppingcart_remove|  & \verb|shoppingcart_remove|\\
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas (names)}
+\label{tab:urlsshoppingremove}
+\end{table}
+
+El funcionamiento del código involucrado en borrar un producto puede  verificarse ejecutando el test descrito en el apartado anterior asignando \ttt{REMOVEPRODUCT = True}.
+
+\subsubsection {Desplegar en Heroku}
+
+%\paragraph{4} 
+Finalmente despliega la  aplicación en Heroku y pueblala usando \ttt{shopping\_web\_tester.py}, necesitarás modificar el valor de la variable \ttt{base\_url}. Recuerda que no debes sobreescribir la aplicación entregada para la práctica 3.
+
+\subsection{Trabajo a Presentar Tras las Dos Primeras Semanas de la práctica} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+
+Entregad en moodle usando un único fichero zip el proyecto \project:
+\begin{itemize}
+ \item El proyecto debe soportar toda las funcionalidades descritas hasta el momento (poblar la base de datos, mostrar productos agrupados por categoría, añadir y quitar productos del carro de la compra y, mostrar el contenido del carro de la compra).
+ \item La estética de la aplicación debe ser atrayente.
+ \item Desplegar la aplicación en Heroku y comprobar que funciona adecuadamente. 
+ \item Comprueba que los tests \ttt{tests.py} y \ttt{shopping\_web\_tester.py} funcionan correctamente tanto en Heroku como localmente. Incluye la versión de  \ttt{shopping\_web\_tester.py} con el cabecero modificado.
+ \item En concreto, se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign4\_first\_second\_week.zip  master}.
+
+\end{itemize}
+\end{framed}
+\end{minipage}
+
+
+\section{Trabajo a Desarrollar durante la Tercera y Cuartas Semanas de la práctica}
+
+Nos queda por implementar dos funcionalidades para acabar con la práctica:
+
+\begin{itemize}
+ \item Controlar la linea que ahora aparece como ``Your cart is empty'' y que en su lugar aparezca el número de productos seleccionados y el importe total.
+ \item Añadir funcionalidad al botón Checkout de forma que se pueda cursar un pedido.
+\end{itemize}
+
+\subsection{Controlar la Línea que Ahora Aparece como ``Your cart is empty''...}
+
+Mantener actualizada la línea ``Your cart is empty'' supone un desafío puesto que 
+para mostrar el mensaje adecuado en cada momento nos haría falta que todas las páginas tuvieran acceso a la información que maneja la clase \ttt{ShoppingCart}. Para resolver este problema vamos a utilizar una herramienta de Django llamada ``context processor''. Esta herramienta es capaz de interceptar el diccionario que se les pasa a las templates 
+(``request context'') y añadir o modificar ciertas entradas. 
+
+La implementación del ``request context'' la haremos en tres pasos
+
+\begin{itemize}
+ \item Crear un nuevo método  \ttt{addShoppingCart} que devuelva un diccionario con los valores que queremos añadir. Esto es, con un objeto de tipo \ttt{ShoppingCart}
+ \item Informar a Django de que, antes de llamar a las templates,  debe añadir al ``request context'' el diccionario devuelto por \ttt{addShoppingCart}.
+ \item Actualizar la template \hhh{base.html} para que pinte el estado actualizado del carro de la compra
+\end{itemize}
+
+\subsubsection{Crear el método \ttt{AddShoppingCart}...}
+
+En el directorio \ttt{shoppingcart} crea un nuevo fichero, llámalo \ttt{addShoppingCart.py} y crea en su interior el siguiente método:
+
+\begin{lstlisting}
+from shoppingcart import ShoppingCart
+
+def addShoppingCart(request):
+    return {'shoppingcart': ShoppingCart(request)}
+
+\end{lstlisting}
+
+Como vemos la función toma como entrada la variable \ttt{request}, la usa para crear un objeto de la clase \ttt{ShoppingCart} y devuelve un diccionario con clave \ttt{'shoppingcart'} y con valor una instancia de la clase \ttt{ShoppingCart}
+
+\subsubsection{Informar a Django de que, antes de llamar a las templates...}
+
+Ahora tenemos que forzar a Django a que antes de llamar a cualquier template ejecute el método \ttt{addShoppingCart.py}. Para ello edita el fichero \settings{}, buscar la variable \ttt{TEMPLATE} y añadir una entrada en ``context\_processors''
+
+\begin{lstlisting}
+ TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': DIRS,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'shoppingcart.addShoppingCart.addShoppingCart',########## ADD this line
+            ],
+        },
+    },
+]
+\end{lstlisting}
+tras esta modificación la variable \ttt{shoppingcart} creada por la función \ttt{addShoppingCart} será enviada a todas las templates.
+
+\subsubsection{Actualizar la Template \hhh{base.html}}
+
+Ya sólo queda modificar el fichero \hhh{base.html}, en concreto el bloque siguiente
+\begin{lstlisting}
+     <div id="subheader">
+         <div class="cart">
+                    Your cart is empty.
+        </div>
+    </div>
+\end{lstlisting}
+para conseguir mostrar el estado del carro de la compra. Modifica el código de forma que en esta linea se muestre: ``this cart is empty'' si el carro esta vacío y el número de productos encargados así como su precio si ya se ha seleccionado algún producto. Finalmente, en caso de que el carro de la compra no esté vacio ``clicando'' en la susodicha línea se debe ir a la página en la que se muestra el carro de la compra (shoppingcart\_list). En la template
+\hhh{base.html} os puede ser útil la función \ttt{length}. Por ejemplo \ttt{\{\{\% if shoppingcart|length > 0 \%\}\}} se satisface cuando el tamaño de la variable \ttt{shoppingcart} es mayor que cero.
+%A context processor is a Python function that takes the request object as an
+% argument and returns a dictionary that gets added to the request context. They
+% come in handy when you need to make something available to all templates.
+
+%Let's create a context processor to set the current cart into the request context for
+%templates. We will be able to access this cart in any template.
+
+\subsection{Añadir funcionalidad al botón Checkout de forma que se pueda cursar un pedido.}
+
+% When a shopping cart is checked out, you need to save an order into the database.
+% Orders will contain information about customers and the products they are buying.
+% Create a new application for managing customer orders using the following command:
+% python manage.py startapp orders
+
+Para acabar la práctica debemos ser capaces de procesar los pedidos. En la actualidad los mismos están guardados en una variable temporal \ttt{shoppingtCart}. Necesitaríamos poder almacenar en la base de datos tanto los productos solicitados como  la información especifica sobre el cliente que los solicita. Para lograr este fin vamos a:
+
+\begin{itemize}
+ \item Crear una aplicación nueva llamada \ttt{placeorder} (\ttt{python manage.py startapp placeorder})
+ \item Crear dos nuevas clases en \modelss{} e incluirlas en el sistema de administración de modelos de Django (\admin)
+ \item Crear un formulario para obtener los datos del usuario (\forms)
+ \item Crear y mostrar una ``template'' que muestre  el formulario (\hhh{createOrder.html})
+ \item Transcribir tanto la información almacenada en \ttt{shoppingcart} como en el formulario a las nuevas clases. (\views)
+ \item Crear una segunda``template'' que informe al usuario de que su pedido ha sido aceptado. (\hhh{confirmOrder.html})
+ \item Limpiar \ttt{shoppingCart}
+
+\end{itemize}
+
+\subsubsection{Crear dos nuevas clases en \modelss{}... }
+Tras crear la nueva aplicación, debemos añadir dos clases auxiliares en \modelss{} donde almacenar los pedidos.
+En un principio pareciera que estas nuevas clases son redundantes y que en lugar de crear la clase shoppingCart hubieramos podido usarlas desde el principio. Hay dos razones por las cuales nuestra aproximación es mejor. La primera es que reduce el acceso a la base de datos y la segunda es que la clases que se guardan como variables de sesión deben ser sencillas y no pueden tener claves extranjeras (punteros a otras clases).
+
+A continuación os sugerimos un esquema para las dos clases a añadir
+
+\begin{verbatim}
+  
+  Order(firstName, familyName, email, address, zip, created, updated, paid)
+    firstName    => String, not null
+    familyName   => String, not null
+    email        => String, not null % usa en Django EmailField
+    address      => String, not null 
+    zip          => String, postal code, not null
+    city         => String, postal code, not null
+    created      => TimeStamp, default = now % usa en Django DateTimeField
+    updated      => TimeStamp, default = now % usa en Django DateTimeField
+    paid         => Boolean, default = False
+  OrderLine(Order,Product, units, price)
+    order        => Order, not null, Foreign Key (Order) - ***related_name = 
+                                                              orderLines***
+    product      => Product, not null, Foreign Key (Product)
+                             *** related_name = productLines ***
+    units        => int, not null; units bought
+    pricePerUnit => real number,  % usa en Django DecimalField 
+      
+\end{verbatim}
+implementa el esquema en \modelss{}.
+
+Sería conveniente crear en ambas clases  una función llamada \ttt{getTotalCost()} (en \ttt{Order}) y \ttt{getProductCost} (en \ttt{OrderLine}) que devuelva el coste total del pedido y el coste por tipo de producto
+respectivamente. Tras crear los modelos no os olvidéis actualizar \settings{},  regenerar la base de datos adecuadamente y modificar \admin{} para incluir estos nuevos modelos en la herramienta de administración. Tambien sería conveniente definir las correspondientes funciones \ttt{\_\_str\_\_(self)} en \modelss.
+
+\subsubsection{Crear un Formulario para Obtener los Datos del Usuario}
+
+Cread el formulario basado en la clase \ttt{Order}. Preguntad por los campos \ttt{firstName}, \ttt{familyName}, \ttt{email}, \ttt{address}, \ttt{zip} y \ttt{city}. Llamad a clase que define el formulario \ttt{OrderCreateForm}. Recordad que los formularios se crean en \forms.
+
+En moodle podéis encontrar el fichero \tests{} para la aplicación \ttt{placeorder} con el que podréis verificar vuestro código. Los tests a ejecutar son:
+
+\begin{verbatim}
+python manage.py test placeorder.tests.placeOrderTest.test_blank_form 
+python manage.py test placeorder.tests.placeOrderTest.test_valid_form 
+python manage.py test placeorder.tests.placeOrderTest.test_Order
+python manage.py test placeorder.tests.placeOrderTest.test_OrderLine
+
+\end{verbatim}
+
+
+\subsubsection{Crear una ``template'' que muestre  el formulario}
+En el directorio \ttt{templates} crear el subdirectorio \ttt{placeorder} y colocar ahí la nuevo template \hhh{createOrder.html}. La información que debe aparecer en esta template y la que debe solicitarse deben ser equivalentes a las que aparecen en el URL \url{https://pure-bayou-13155.herokuapp.com/orders/create/}. Esta template será invocada por un metodo que definiremos en \views{} y que se ejecuta al pulsar el botón \ttt{Checkout} en el URL \url{https://pure-bayou-13155.herokuapp.com/cart/}. Llamad a este método \ttt{createOrder}.
+
+No olvidéis actualizar los ficheros \urls{} como se resume en la tabla~\ref{tab:urlsplaceorder}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^create_order/$'|  & \verb|views.createOrder|  & \verb|create_order|\\
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas}
+\label{tab:urlsplaceorder}
+\end{table}
+
+\subsubsection{Transcribir tanto la información almacenada en \ttt{shoppingcart} como en el formulario a las nuevas clases}
+
+Ahora tenemos que almacenar en la base de datos la información relacionada con el pedido. Esta información se encuentra en el carro de la compra (almacenado como una variable de sesión) y en el formulario instanciado usando \ttt{OrderCreateForm}. Tenemos que crear un nuevo método en \views{} que cree y almacene una instancia de la clase \ttt{Order} y tantas instancias de \ttt{OrderLine} como haga falta.  Llamemos a este método \ttt{confirmOrder} 
+
+No olvidéis actualizar los ficheros \urls como se resume en la tabla~\ref{tab:urlsconfirmorder}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+    \textbf{url} & \textbf{método} & \textbf{name} \\ \hline
+ \verb|r'^confirm_order/$'|  & \verb|views.confirmOrder|  & \verb|confirm\_order|\\
+\end{tabular}
+\caption{correspondencia entre urls, métodos y etiquetas}
+\label{tab:urlsconfirmorder}
+\end{table}
+
+\subsubsection{Crear una segunda``template'' que informe al usuario de que su pedido ha sido aceptado. (\hhh{confirmOrder.html})}
+El método desarrollado en el apartado anterior (\ttt{confirmOrder}) debe devolver una 
+template (\hhh{confirmOrder.html}) que  informe al usuario de que su pedido ha quedado registrado y le muestre su número de pedido. 
+
+\subsubsection{Limpiar shoppingCart}
+Finalmente tras almacenar la información necesaria en la base de datos no olvides borrar la variable de sesión \ttt{shoppingCart} para que el caro de la compra quede vacío. Deberíais tener ya definido el método \ttt{clear} en la clase \ttt{shoppingCart}. Usad este método para borrar la vraible de sesión.
+
+Ya sólo queda ejecutar el test \ttt{web\_shopping\_tester.py} localmente con las siguientes variables puestas a True.
+
+\begin{verbatim}
+    POPULATE      = True # set to True if you  want to populate the database
+    ADDPRODUCT    = True # set to True if you  want to add
+                         # products to the shoppingcart
+    REMOVEPRODUCT = True # set to True if you  want to remove
+                         # products from the shoppingcart
+    CHECKOUT      = True # press checkout botton
+    PLACEORDER    = True # place order. The END ;-)
+\end{verbatim}
+tras ello desplegar el proyecto en Heroku y ejecuta el test \ttt{web\_shopping\_tester.py}
+apuntando la variable \ttt{base\_url} a vuestra URL en \heroku.
+
+\section{Tests}
+Si deseas obtener un 10 queda una última tarea por realizar. Crea un fichero similar a \ttt{shoppingcart/tests.py} (llámalo \ttt{shoppingcar/tests\_10.py}) de forma que compruebe que tras añadir productos al carro de la compra existe una variable de sesión llamada ``shoppingCart'' y que tras ejecutar el método \ttt{clear} de la clase \ttt{ShoppingCart}
+la variable de sesión ``shoppiongCart'' ha desaparecido.
+
+\section{Trabajo a Presentar al finalizar la práctica} % Sub-sub-section
+
+\begin{minipage}{\linewidth}
+\begin{framed}
+\addtocounter{ejercicioNo}{1} 
+\begin{itemize}
+
+ \item Entregad en moodle usando un único fichero zip el proyecto \ttt{onlineShop}
+ \item El proyecto debe soportar toda las funcionalidades solicitadas en la tercera y cuarta práctica 
+ \item La estética de la aplicación debe ser atrayente.
+ \item Despliega la aplicación en Heroku y comprueba que funciona adecuadamente. 
+ \item Debajo del link usado para subir el proyecto hay otro llamado \texttt{Heroku URLS práctica\_4}, conectaros al mismo y escribid la dirección de Heroku donde esté desplegada vuestra aplicación. Esta dirección debe ser \textbf{DISTINTA} a la usada en la práctica anterior.
+
+ \item Comprueba que los tests \ttt{tests.py} y \ttt{shopping\_web\_tester.py} funcionan correctamente tanto en Heroku como localmente. Incluye la versión de  \ttt{shopping\_web\_tester.py} con el cabecero modificado. Igualmente incluye  \ttt{shoppingcart/tests\_10.py} en caso de que lo hayas implementado.
+ \item Incluye como parte del proyecto las imágenes que cargan los tests.  
+ \item En concreto, se deberá subir a moodle el fichero obtenido ejecutando el comando \texttt{git archive --format zip --output ../assign4\_final.zip  master}.
+\end{itemize}
+
+
+\end{framed}
+\end{minipage}
+
+\section{Criterios de evaluación}
+
+Para aprobar con 5 puntos es necesario satisfacer en su totalidad los siguientes criterios:
+\begin{itemize}
+ \item Todos los ficheros necesarios para ejecutar la aplicación y los tests se han entregado a tiempo.
+ \item Localmente es posible seleccionar (y quitar) productos para su  compra (esto incluye añadir categorías y productos, seleccionar y quitar productos del carro de la compra y visualizar el carro de la compra).
+ \item Al ejecutarse los tests localmente (\ttt{tests.py} y \ttt{shopping\_web\_testter.py}), para la funcionalidad requerida, el número total de fallos no es superior a uno.
+\end{itemize}
+ 
+Nota en el rango 5.0-5.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item El URL en el que el proyecto está desplegada en Heroku está accesible en el link denominado Heruko URL practica\_4.
+ \item En Heroku es posible seleccionar (y quitar) productos para su  compra (esto incluye añadir categorías y productos, seleccionar y quitar productos del carro de la compra y visualizar el carro de la compra) .
+ \item Al ejecutarse los tests en Heroku (\ttt{shopping\_web\_testter.py}), para la funcionalidad requerida, el número total de fallos no es superior a uno. 
+ \item Si no es posible ejecutar el test \ttt{shopping\_web\_testter.py} por imposibilidad de acceder al entorno de administración (por ejemplo por no haber usado el nombre de usuario y la password solicitada o no haberse entregdo la versión actualizada del mismo) la calificación de esta sección será cero.
+\end{itemize}
+ 
+Nota en el rango 6.0-6.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item Se mantiene correctamente actualizada la línea ``Your cart is empty'' (son visibles tanto el numero de objetos solicitados como su precio total. Igualmente esta lincado a la página que lista el carro de la compra)
+ \end{itemize}
+ 
+Nota en el rango 7.0-7.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad
+ \item El checkout se realiza correctamente (se almacena en la base de datos el pedido solicitado, se comunica al usuario de que se ha procesado, así como se muestra el id del pedido, se limpia el carro de la compra)
+ \end{itemize}
+ 
+Nota en el rango 8.0-8.9 si se satisfacen los siguientes criterios
+ \begin{itemize}
+ \item Los criterios enunciados en el párrafo anterior se satisfacen en su totalidad 
+ \item Ningún test falla en ningún caso.
+ \item La aplicación es robusta (no se produce ninguna situación en la cual la aplicación no haya respondido adecuadamente)
+ \item La aplicación esta trabajada desde el punto de vista estético
+ \item El código es legible, eficiente, esta bien estructurado y comentado:
+    \begin{itemize}
+        \item  las búsquedas las realiza la base de datos. Esto es, no se cargan todos los elementos de una tabla y se buscan los objetos adecuados en las funciones definidas en \views.
+        \item  los errores se procesan adecuadamente y se devuelven mensajes de error comprensibles
+        \item  El código presenta un estilo consistente y las funciones están comentadas incluyendo su autor. Nota: el autor de una función debe ser único
+        \item se indenta consistentemente sin mezclar espacios y tabuladores
+    \end{itemize}
+\end{itemize}
+
+Nota en el rango 9-10.0 si se satisfacen los siguientes criterios
+ \begin{itemize}
+    \item se ha creado el test solicitado (\ttt{shoppingcart/views\_10.py})
+ \end{itemize}
+
+Falta entrega parcial o entrega parcial retrasada $\rightarrow$ substraer un punto por cada entrega. 
+ 
+ Entrega final retrasada $\rightarrow$ quitar un punto por día de retraso.
+
+ NOTA: El código usado para corregir esta práctica será el subido a Moodle. En ningún caso se usará el código existente en el repositorio de Bitbucket o Heroku.
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%5
+% python manage.py shell
+%  s = Session.objects.get(pk='2b1189a188b44ad18c35e113ac6ceead')
+% s.get_decoded()
+
+% select *from django_session
