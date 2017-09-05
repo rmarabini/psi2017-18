@@ -204,9 +204,7 @@ It is assumed that the environment variable  \texttt{DATABASE\_URL} has been pro
 The databases created using postgres do not disappear when the computer is switched off. Therefore, it is very likely that you will find a database named \textit{psi}, created by another group, with a structure/content different from the one you need. In order to avoid conflict, we suggest that you delete and recreate the database \textit{psi} at the beginning of each class. The command  \texttt{dropdb -U alumnodb -h localhost psi} will delete the database and,  \texttt{createdb -U alumnodb -h localhost psi}  will create it again.
 
 \subsection{Tests}
-In moodle you may find the file \texttt{tests.py}. Check that your project satisfies \textbf{ALL} the tests defined in the classes \textit{GeneralTests}, \textit{IndexPageTests}, \textit{AboutPageTests} and \textit{ModelTests}. Do not modify the \texttt{tests.py} file, if any of the tests fails fix your code.
-
-In order to execute the tests, download the test file into the directory \texttt{rango} and type:
+In moodle you may find the file \texttt{tests.py} that contains a collection of tests. In order to execute them  download the test file into the directory \texttt{rango} and type:
 \begin{verbatim}
 python ./manage.py test rango.tests.GeneralTests  --keepdb -v 3
 python ./manage.py test rango.tests.IndexPageTests  --keepdb -v 3
@@ -216,7 +214,7 @@ python ./manage.py test rango.tests.Chapter4ViewTests  --keepdb -v 3
 python ./manage.py test rango.tests.Chapter5ViewTests  --keepdb -v 3
 \end{verbatim}
 
-
+If the code does not pass some tests fix your code do not modify the test.
 
 \section{Deliverables to be Handed in after the Second Week}
 

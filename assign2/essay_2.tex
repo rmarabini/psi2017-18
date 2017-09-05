@@ -209,9 +209,7 @@ DATABASES['default'] =  dj_database_url.config()
 A diferencia de lo que ocurre con los datos existentes en vuestra cuenta, las bases de datos creadas usando postgres no se borran al apagar el equipo. Por ello es posible que os encontrais en el ordenador con una base de datos llamada \textit{psi} con una estructura diferente a la que necesitáis. Por ello, y para evitar conflictos, os recomendamos que al principio de cada sesión borréis la base de datos \textit{psi}. Para borrar la base podéis usar el comando \texttt{dropdb -U alumnodb -h localhost psi}, a continuación recrear la base con \texttt{createdb -U alumnodb -h localhost psi}.
 
 \subsection{Tests}
-En la página moodle de la asignatura se encuentra el fichero \texttt{tests.py}. Aseguraros de que TODOS los tests definidos en las clases \textit{GeneralTests}, \textit{IndexPageTests},\textit{AboutPageTests} y \textit{ModelTests} son satisfechos por vuestros código. No modifiquéis el fichero con los tests, si alguno test no se satisface modificar vuestro proyecto. 
-
-Para ejecutar los tests copiad este fichero en el directorio rango y teclead:
+En la página moodle de la asignatura se encuentra el fichero \texttt{tests.py} el cual contiene una colección de tests. Para ejecutar los tests copiad este fichero en el directorio rango y teclead:
 \begin{verbatim}
 python ./manage.py test rango.tests.GeneralTests  --keepdb -v 3
 python ./manage.py test rango.tests.IndexPageTests  --keepdb -v 3
@@ -221,6 +219,7 @@ python ./manage.py test rango.tests.Chapter4ViewTests  --keepdb -v 3
 python ./manage.py test rango.tests.Chapter5ViewTests  --keepdb -v 3
 \end{verbatim}
 
+No modifiquéis el fichero con los tests, si alguno test no se satisface modificar vuestro proyecto. 
 
 
 \section{Trabajo a Entregar Durante la Segunda Semana de la práctica}
