@@ -277,7 +277,6 @@ p.image.save(image_name, imageObject, save = True)
 \end{verbatim}
 
 Las imagenes se guardan en el directorio definido por la variable  \ttt{MEDIA\_ROOT} que está declarada en \settings{} (vease listados~\ref{settings}~y~\ref{urls}).
-
 \subsection{Acceso a la Base de Datos}
 
 Créese un fichero en python llamado \texttt{query\_onlineshop.py} que realice las siguientes tareas (NOTA1: este puede ser un buen momento para releer el capítulo \textit{Models and Databases} secciones \textit{Django Models and the Django Shell} y \textit{Creating a Population Script}. NOTA2: guardad el fichero \texttt{query\_onlineshop.py} en la raíz del proyecto):
@@ -366,8 +365,7 @@ Ahora que ya tenemos la base de datos poblada vamos a crear dos vistas para most
 
 Para crear una aplicación web estéticamente atrayente os hará falta utilizar ficheros de estilos (css). Estos ficheros debéis colocarlos en un sitio accesible por \django{} y referirlos adecuadamente. Por ejemplo, para acceder al fichero llamado \texttt{mycss.css} situado en el directorio \texttt{path\_al\_projecto}/static/css tendriais que modificar \texttt{settings.py}
 
-\begin{lstlisting}
-\label{settings}
+\begin{lstlisting}[label={settings}]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -394,8 +392,7 @@ y en el fichero de template habría que añadir las lineas ( \texttt{\{\% load  
 
 Por último se deben añadir las siguientes líneas al fichero \urls del proyecto :
 
-\begin{lstlisting}
-\label{urls}
+\begin{lstlisting}[label={urls}]
 from django.conf.urls.static import static
 ...
 urlpatterns += static(settings.STATIC_URL,\

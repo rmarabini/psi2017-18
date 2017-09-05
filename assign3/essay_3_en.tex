@@ -357,8 +357,7 @@ Let us create two views that will show a gallery with the Products (\herokuurl{}
 
 In order to create a project aesthetically appealing you may need to use style files (css). This files should be saved in the right place and acceded (in the html files) properly. For example, if you have a style file called  \ttt{mycss.css} saved in the directory \texttt{path\_al\_projecto/static/css} you should modify \settings{} adding the following lines:
 
-\begin{lstlisting}
-\label{settings}
+\begin{lstlisting}[label={settings}]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 #statis files go here
@@ -386,8 +385,7 @@ You will also need to add the line \texttt{\{\% load  staticfiles \%\}} at the v
 
 Finally the project \urls also need to be modified adding the lines:
 
-\begin{lstlisting}
-\label{urls}
+\begin{lstlisting}[label={urls}]
 from django.conf.urls.static import static
 ...
 urlpatterns += static(settings.STATIC_URL,\
